@@ -1,0 +1,19 @@
+{
+  "name": "coronacast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amills12/CoronaCast.git"
+  },
+  "author": "Runtime Terror",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amills12/CoronaCast/issues"
+  },
+  "homepage": "https://github.com/amills12/CoronaCast#readme"
+}

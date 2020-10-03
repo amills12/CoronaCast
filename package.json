@@ -1,7 +1,7 @@
 {
-  "name": "react_template_repo",
+  "name": "coronacast",
   "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha server/tests",
@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/UFWebApps/React_Template_Repo.git"
+    "url": "git+https://github.com/amills12/CoronaCast.git"
   },
   "keywords": [],
-  "author": "Dakota Rennemann",
+  "author": "Runtime Terror",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^4.1.0",
@@ -31,5 +31,5 @@
     "supertest": "^4.0.2",
     "mocha": "^6.2.1"
   },
-  "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
+  "homepage": "https://github.com/amills12/CoronaCast#readme"
 }

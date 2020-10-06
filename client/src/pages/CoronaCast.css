@@ -1,0 +1,58 @@
+
+.CoronaCast-Title {
+  align-self: center;
+  position: relative;
+  bottom: 320px;
+  color: #414141;
+  font-size: 50px;
+  font-family: "Segoe UI";
+  font-weight: 350;
+}
+
+.CoronaCast-Background {
+  background: linear-gradient(0deg, #6CAB63, #8ACE6D 10%, #89F3EC);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.Login {
+  align-self: center;
+  position: absolute;
+  width: 432px;
+  height: 550px;
+  border: 1px solid rgba(42, 75, 32, .6);
+  border-radius: 60px;
+  background-color: rgba(1, 71, 52, .2);
+}
+
+.HeaderText {
+  text-align: center;
+  color: #414141;
+  font-family: "Segoe UI";
+  font-weight: 350;
+  font-size: 30px;
+}
+
+.BodyText {
+  text-align: left;
+  margin-left: 5%;
+  color: #414141;
+  font-family: "Segoe UI";
+  font-weight: 350;
+  font-size: 30px;
+  line-height: 300%;
+}
+
+.BodyText-ZIP {
+  text-align: left;
+  margin-left: 5%;
+  margin-top: -3%;
+  color: #414141;
+  font-family: "Segoe UI";
+  font-weight: 350;
+  font-size: 30px;
+}

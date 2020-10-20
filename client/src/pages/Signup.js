@@ -1,6 +1,5 @@
 import React from 'react';
 import './CoronaCast.css';
-import './Signup.css';
 
 function Signup() {
     return (

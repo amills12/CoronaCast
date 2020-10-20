@@ -14,7 +14,7 @@ export default function RouteWrapper({
     }
 
     if (!isPrivate && signed) {
-        return <Redirect to="/home" />;
+        return <Redirect to="/main" />;
     }
 
     return <Route {...rest} component={Component} />;

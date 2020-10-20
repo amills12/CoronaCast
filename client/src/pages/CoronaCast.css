@@ -6,6 +6,8 @@
   background: linear-gradient(0deg, #6CAB63, #8ACE6D 10%, #89F3EC);
   min-width: 100vw;
   min-height: 100vh;
+  min-width: 100vw;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;

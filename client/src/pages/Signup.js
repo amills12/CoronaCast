@@ -6,7 +6,8 @@ function Signup() {
     return (
         <div className="CoronaCast">
             <div className="Background">
-                <header className="CoronaCast-Title">CoronaCast</header>
+                <div className="CoronaCast-Title">CoronaCast</div>
+                <div className="CoronaCast-Title" style={{position: 'fixed', fontSize: '40px', marginTop: '5vh'}}>Welcome to CoronaCast</div>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: node:14.10.1
 
-    working_directory: ~/repo
+    working_directory: ~/
 
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      - run: npm run-script install-all
 
       - save_cache:
           paths:

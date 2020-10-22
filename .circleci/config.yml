@@ -4,8 +4,6 @@ jobs:
     docker:
       - image: node:14.10.1
 
-    working_directory: ~/
-
     steps:
       - checkout
 

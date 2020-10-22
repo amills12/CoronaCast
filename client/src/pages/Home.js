@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import './CoronaCast.css';  
 
 function Home() {
-  const history = useHistory();
+  //const history = useHistory();
 
   return (
       <div className="CoronaCast">

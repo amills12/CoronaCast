@@ -5,14 +5,19 @@
 .Background {
   background: linear-gradient(0deg, #6CAB63, #8ACE6D 10%, #89F3EC);
   min-height: 100vh;
+  min-width: 100vw;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: fixed;
 }
 
 .CoronaCast-Title {
   align-self: center;
-  position: relative;
+  top: 16vh;
+  margin: auto;
+  position: fixed;
   bottom: 320px;
   color: #414141;
   font-size: 50px;
@@ -20,7 +25,7 @@
   font-weight: 350;
 }
 
-.Login {
+.MainBox {
   align-self: center;
   width: 432px;
   height: 550px;

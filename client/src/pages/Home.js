@@ -9,7 +9,7 @@ function Home() {
       <div className="CoronaCast">
         <div className="Background">
           <div className="CoronaCast-Title">CoronaCast
-            <div className="Login">
+            <div className="MainBox">
 
               <a href="/login" style= {{marginTop: '6vh', fontSize: '35px', fontWeight: '400'}} class ="ui button">Login</a>
               <a href="/signup" style= {{marginTop: '6vh', fontSize: '35px', fontWeight: '400'}} class ="ui button">Sign Up</a>

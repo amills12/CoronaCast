@@ -1,14 +1,14 @@
 import React from 'react';
-import { useHistory } from "react-router-dom"
 import './CoronaCast.css';  
 
-function Home() {
-  const history = useHistory();
+class Home extends React.Component {
 
-  return (
+  render() {
+    return (
       <div className="CoronaCast">
         <div className="Background">
-          <div className="CoronaCast-Title">CoronaCast
+          <div className="CoronaCast-Title">
+            CoronaCast
             <div className="MainBox">
 
               <a href="/login" style= {{marginTop: '6vh', fontSize: '35px', fontWeight: '400'}} class ="ui button">Login</a>
@@ -23,16 +23,15 @@ function Home() {
                  }}/>
             
                 <div className="HeaderText" style= {{textAlign: 'left', marginTop: '3vh', marginLeft: '2vh'}}>County</div>
-                  <div style={{marginTop: '2.7vh'}}class="ui input">
-                    <input style= {{height: '44px', width: '391px', textAlign: 'left', fontFamily: 'Segoe UI', fontSize: '20px', fontWeight: '400'}} 
-                    type="text" placeholder="Search County"></input>
+                  <div style={{marginTop: '2.7vh'}} class="ui input">
+                    <input type="text" placeholder="Search County"></input>
                   </div>             
             </div>
           </div>
         </div>
       </div>
-
-  );
+    );
+  }
 }
 
 export default Home;

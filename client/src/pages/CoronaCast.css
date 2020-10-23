@@ -1,5 +1,6 @@
 .CoronaCast {
   text-align: center;
+  overflow: auto;
 }
 
 .Background {
@@ -17,7 +18,7 @@
   align-self: center;
   top: 16vh;
   margin: auto;
-  position: fixed;
+  position: absolute;
   bottom: 320px;
   color: #414141;
   font-size: 50px;
@@ -67,3 +68,20 @@ a.ui.button {
   font-weight: 375;
   border-radius: 30px;
 }
+
+div.ui.input {
+  height: 44px;
+  width: 391px;
+  text-align: left;
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 400;
+}
+
+div.field {
+  width: 391px;
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 400;
+}
+

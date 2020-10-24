@@ -1,7 +1,7 @@
 const axios = require('axios');
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
 const url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv';
-//<div class="col-xs-12 col-md-12 outer--box outer--box--left">
+//this file just prints the csv file from the link above. 
 axios(url)
   .then(response => {
     const html = response.data;

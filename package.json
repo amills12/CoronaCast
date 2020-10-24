@@ -21,15 +21,17 @@
   "author": "Runtime Terror",
   "license": "MIT",
   "dependencies": {
-    "concurrently": "^4.1.0",
-    "nodemon": "^1.18.10",
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "concurrently": "^4.1.0",
     "express": "^4.17.1",
+    "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
     "should": "^13.2.3",
-    "supertest": "^4.0.2",
-    "mocha": "^6.2.1"
+    "supertest": "^4.0.2"
   },
   "homepage": "https://github.com/amills12/CoronaCast#readme"
 }

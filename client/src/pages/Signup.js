@@ -25,8 +25,8 @@ const Signup = (props) => {
                 <Grid.Column style={{ maxWidth: 450, padding: 0 }}>
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
-                    <div className="MainBox">
-                        <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block', top: '5vh'}}>
+                    <div className="MainBox" style={{ height: 500, paddingTop: 30}}>
+                        <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block'}}>
                             <label>Full Name</label>
                             <Form.Input placeholder='Full Name' onChange={e => setSignUpInfo({...signUpInfo, fullName: e.target.value})} />
                             <label>Username</label>

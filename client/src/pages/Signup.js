@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header, Button, Form, Grid } from 'semantic-ui-react';
 import './CoronaCast.css';
 
 const Signup = (props) => {
+    const [signUpInfo, setSignUpInfo] = useState({
+        fullName: "",
+        username: "",
+        password: "",
+        vPassword:""
+    })
+    
+    const submitSignUpInfo = (e) =>{
+        //This is what runs when the user hits submit, e here stands for event. 
+        //Notice how all the onChange functions change each variable in the signUpInfo class using setSignUpInfo
+
+        console.log(signUpInfo); //This prints to the webpage console not the VScode one
+
+        //Other logic goes here
+    }
+    
     return (
         <html>
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -10,15 +26,15 @@ const Signup = (props) => {
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
                     <div className="MainBox">
-                        <Form className="InputBox" style={{ display: 'inline-block' }}>
+                        <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block', top: '5vh'}}>
                             <label>Full Name</label>
-                            <Form.Input placeholder='Full Name' />
+                            <Form.Input placeholder='Full Name' onChange={e => setSignUpInfo({...signUpInfo, fullName: e.target.value})} />
                             <label>Username</label>
-                            <Form.Input icon='user' iconPosition='left' placeholder='Username' />
+                            <Form.Input icon='user' iconPosition='left' placeholder='Username' onChange={e => setSignUpInfo({...signUpInfo, username: e.target.value})} />
                             <label>Password</label>
-                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password' />
+                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password' onChange={e => setSignUpInfo({...signUpInfo, password: e.target.value})}/>
                             <label>Retype Password</label>
-                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password' />
+                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Retype-Password' onChange={e => setSignUpInfo({...signUpInfo, vPassword: e.target.value})}/>
                             <Button className="InputButton">Continue</Button>
                         </Form>
                     </div>

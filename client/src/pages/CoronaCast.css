@@ -7,7 +7,6 @@ html {
   background: #a8ff78;
   background: -webkit-linear-gradient(to top, #a8ff78, #78ffd6);
   background: linear-gradient(to top, #a8ff78, #78ffd6);
-  background-attachment: fixed;
 }
 
 .MainBox {
@@ -38,7 +37,6 @@ a.HeaderText {
   font-family: "Segoe UI";
   font-weight: 350;
   font-size: 22px;
-  text-decoration: none;
 }
 
 .ui.dropdown.InputText {
@@ -48,7 +46,6 @@ a.HeaderText {
 }
 .ui.form.InputBox {
   width: 391px;
-  top: 5vh;
   font-family: "Segoe UI";
   font-size: 20px;
   font-weight: 400;

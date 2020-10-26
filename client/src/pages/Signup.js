@@ -1,4 +1,5 @@
 import React from 'react';
+import { Header, Button, Form, Grid } from 'semantic-ui-react';
 import './CoronaCast.css';
 
 
@@ -7,7 +8,30 @@ class Signup extends React.Component {
 
     render() {
         return (
-        <div className="CoronaCast">
+            <html>
+                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                    <Grid.Column style={{ maxWidth: 450, padding: 0}}>
+                        <Header className="Title" textAlign='center'>CoronaCast</Header>
+                        <Header className="Title" style={{fontSize: 36}}>Welcome to CoronaCast</Header>
+                        <div className="MainBox">
+                            <Form className="InputBox" style={{display: 'inline-block'}}>
+                            <label>Full Name</label>
+                            <Form.Input placeholder='Full Name'/>
+                            <label>Username</label>
+                            <Form.Input icon='user' iconPosition='left' placeholder='Username'/>
+                            <label>Password</label>
+                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password'/>
+                            <label>Retype Password</label>
+                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password'/>
+                            <Button className="InputButton">Continue</Button>
+                            </Form>
+                        </div>
+                    </Grid.Column>
+                </Grid>
+            </html>
+
+
+        /*<div className="CoronaCast">
             <div className="Background">
                 <div className="CoronaCast-Title" style={{top: '11vh'}}>CoronaCast</div>
                 <div className="CoronaCast-Title" style={{position: 'fixed', fontSize: '40px', marginTop: '1.2vh'}}>Welcome to CoronaCast</div>
@@ -34,7 +58,7 @@ class Signup extends React.Component {
                         </form>
                     </div>
             </div>
-        </div>
+        </div>*/
         );
     }
 }

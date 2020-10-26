@@ -1,31 +1,28 @@
 import React from 'react';
+import { Header, Button, Form, Segment, Grid } from 'semantic-ui-react';
 import './CoronaCast.css';
 
 class Login extends React.Component {
 
     render() {
         return (
-        <div className="CoronaCast">
-            <div className="Background">
-                <div className="CoronaCast-Title">CoronaCast</div>
-                <div className="CoronaCast-Title" style={{position: 'fixed', fontSize: '40px', marginTop: '6vh'}}>Welcome back to CoronaCast</div>
-                    <div className="MainBox" style={{height: '334px'}}>
-                        <form class="ui form" style = {{marginLeft: '1.8vh'}}>
-                            <div style={{marginTop: '4vh'}} class="field">
-                                <label style={{fontSize: '27px', fontWeight: '350'}}>Username</label>
-                                <input style={{marginTop: '1vh'}} type="text" name="username" placeholder="Username"/>
-                            </div>
-                            <div style={{marginTop: '4vh'}} class="field">
-                                <label style={{fontSize: '27px', fontWeight: '350'}}>Password</label>
-                                <input style={{marginTop: '1vh'}} type="password" name="password" placeholder="Password"/>
-                            </div>
-                            <a href="/" className="BodyText" style={{position: 'fixed', fontSize: '25px', marginTop: '-2vh', marginLeft: '-1.9vh'}}>Forgot Password</a>
-                            <button style={{height: '38px', width: '144px', marginLeft: '23vh', backgroundColor: '#8EBC88',  border: '1px solid #51704D', borderRadius: '20px', fontFamily: 'Segoe UI'}} 
-                            class="ui button" type="submit">Login</button>
-                        </form>
-                    </div>
-            </div>
-        </div>
+            <html>
+                <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                    <Grid.Column style={{ maxWidth: 500, padding: 0}}>
+                        <Header className="Title" >CoronaCast</Header>
+                        <Header className="Title" style={{fontSize: 36}}>Welcome back to CoronaCast</Header>
+                        <div className="MainBox" style={{height: 290, display: 'inline-block'}}>
+                            <Form className="InputBox" style={{display: 'inline-block'}}>
+                                <Form.Input style={{marginTop: 40}} icon='user' iconPosition='left' placeholder='Username'/>
+                                <Form.Input style={{marginTop: 30}} icon='lock' iconPosition='left' type='password' placeholder='Password' />
+                                <a href="/" class="HeaderText" style={{}}>Forgot Password</a>
+                                <span style={{width: 86, display: 'inline-block'}}/>
+                                <Button className="InputButton">Login</Button>
+                            </Form>
+                        </div>
+                    </Grid.Column>
+                </Grid>
+            </html>
         );
     }
 }

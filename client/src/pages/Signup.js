@@ -4,7 +4,8 @@ import './CoronaCast.css';
 
 const Signup = (props) => {
     const [signUpInfo, setSignUpInfo] = useState({
-        fullName: "",
+        firstName: "",
+        lastName: "",
         username: "",
         password: "",
         vPassword:""
@@ -25,16 +26,15 @@ const Signup = (props) => {
                 <Grid.Column style={{ maxWidth: 450, padding: 0 }}>
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
-                    <div className="MainBox" style={{ height: 500, paddingTop: 30}}>
+                    <div className="MainBox" style={{ height: 475, paddingTop: 20}}>
                         <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block'}}>
-                            <label>Full Name</label>
-                            <Form.Input placeholder='Full Name' onChange={e => setSignUpInfo({...signUpInfo, fullName: e.target.value})} />
-                            <label>Username</label>
-                            <Form.Input icon='user' iconPosition='left' placeholder='Username' onChange={e => setSignUpInfo({...signUpInfo, username: e.target.value})} />
-                            <label>Password</label>
-                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Password' onChange={e => setSignUpInfo({...signUpInfo, password: e.target.value})}/>
-                            <label>Retype Password</label>
-                            <Form.Input icon='lock' iconPosition='left' type='password' placeholder='Retype-Password' onChange={e => setSignUpInfo({...signUpInfo, vPassword: e.target.value})}/>
+                            <Form.Group widths='equal'>
+                                <Form.Input fluid label ='First Name' placeholder='First Name' onChange={e => setSignUpInfo({...signUpInfo, firstName: e.target.value})} />
+                                <Form.Input fluid label ='Last Name' placeholder='Last Name' onChange={e => setSignUpInfo({...signUpInfo, lastName: e.target.value})} />
+                            </Form.Group>
+                            <Form.Input fluid label ='Email' placeholder='Email' onChange={e => setSignUpInfo({...signUpInfo, username: e.target.value})} />
+                            <Form.Input fluid label ='Password' type='password' placeholder='Password' onChange={e => setSignUpInfo({...signUpInfo, password: e.target.value})}/>
+                            <Form.Input fluid label ='Retype Password' type='password' placeholder='Retype Password' onChange={e => setSignUpInfo({...signUpInfo, vPassword: e.target.value})}/>
                             <Button className="InputButton">Continue</Button>
                         </Form>
                     </div>

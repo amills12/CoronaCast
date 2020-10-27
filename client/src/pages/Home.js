@@ -3,7 +3,7 @@ import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
 import './CoronaCast.css';
 
 const countyOptions = [
-  { key: 'Sprint 3', text: 'Sprint 3' }
+  { key: 'Coming In Sprint 3', text: 'Coming In Sprint 3' }
 ]
 
 const Home = (props) => {
@@ -15,9 +15,10 @@ const Home = (props) => {
           <div className="MainBox">
             <a href="/login" class="ui button">Login</a>
             <a href="/signup" class="ui button">Sign Up</a>
-            <Divider style={{ backgroundColor: '#707070' }} />
-            <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>County</Header>
-            <Dropdown className="InputText" style={{ width: 391, height: 44 }} placeholder='County' search selection options={countyOptions} />
+            <Divider></Divider>
+            <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
+            <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
+            <Dropdown className="InputText" style={{ width: 391, height: 44 }} placeholder='Zip Code' search selection options={countyOptions} />
           </div>
         </Grid.Column>
       </Grid>

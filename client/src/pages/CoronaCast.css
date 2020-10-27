@@ -60,7 +60,7 @@ a.HeaderText {
 }
 
 a.ui.button {
-  background-color: rgba(42, 75, 32, .4);;
+  background-color: rgba(42, 75, 32, .2);;
   height: 93px;
   width: 358px;
   border: 2px solid rgba(42, 75, 32);
@@ -73,7 +73,7 @@ a.ui.button {
 .ui.button.InputButton {
   height: 38px;
   width: 144px;
-  background-color:  rgba(42, 75, 32, .4);
+  background-color:  rgba(42, 75, 32, .2);
   border: 2px solid rgba(42, 75, 32);
   color: black;
   border-radius: 20px;

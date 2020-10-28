@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import CoronaCast from './CoronaCast';
 import * as serviceWorker from './serviceWorker';
+import * as authConfig from './config/AuthConfig';
+import 'semantic-ui-css/semantic.min.css';
+import { Auth0Provider } from '@auth0/auth0-react';
+
+//Auth0 Client ID
+const domain = authConfig.domain;
+const clientId = authConfig.clientID;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CoronaCast />
-  </React.StrictMode>,
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}>
+    <React.StrictMode>
+      <CoronaCast />
+    </React.StrictMode>
+  </Auth0Provider>,
   document.getElementById('root')
 );
 

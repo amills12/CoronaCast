@@ -1,24 +1,23 @@
-.CoronaCast {
-  text-align: center;
-  overflow: auto;
+html {
+  min-height: 100% !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: #11998e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.Background {
-  background: linear-gradient(0deg, #6CAB63, #8ACE6D 10%, #89F3EC);
-  min-height: 100vh;
-  min-width: 100vw;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
+.MainBox {
+  width: 432px;
+  height: 550px;
+  border: 2px solid rgba(42, 75, 32, .8);
+  border-radius: 60px;
+  background-color: rgba(1, 71, 52, .2);
 }
 
-.CoronaCast-Title {
-  align-self: center;
-  top: 16vh;
-  margin: auto;
-  position: absolute;
+.ui.header.Title {
   bottom: 320px;
   color: #414141;
   font-size: 50px;
@@ -26,62 +25,58 @@
   font-weight: 350;
 }
 
-.MainBox {
-  align-self: center;
-  width: 432px;
-  height: 550px;
-  margin: auto;
-  position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
-  z-index: 999;
-  border: 1px solid rgba(42, 75, 32, .6);
-  border-radius: 60px;
-  background-color: rgba(1, 71, 52, .2);
-}
-
-.HeaderText {
+.ui.header.HeaderText {
   color: #414141;
   font-family: "Segoe UI";
   font-weight: 350;
   font-size: 35px;
 }
 
-.BodyText {
-  text-align: left;
-  margin-left: 5%;
+.ui.header.InsideText {
+  color: #414141;
+  font-family: "Segoe UI";
+  font-weight: 400;
+  font-size: 22px;
+}
+
+a.HeaderText {
   color: #414141;
   font-family: "Segoe UI";
   font-weight: 350;
-  font-size: 30px;
-  line-height: 300%;
+  font-size: 22px;
 }
 
-a.ui.button {
-  background-color: #8EBC88;
-  color: #414141;
+
+.ui.dropdown.InputText {
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 400;
+}
+.ui.form.InputBox {
+  width: 391px;
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.ui.button.AuthButton {
+  background-color: rgba(42, 75, 32, .2);;
   height: 93px;
   width: 358px;
-  margin: auto;
-  font-family: "Segoe UI";
-  border: 1px solid #51704D;
-  font-size: 30px;
-  font-weight: 375;
+  border: 2px solid rgba(42, 75, 32);
+  font-size: 35px;
+  font-weight: 400;
   border-radius: 30px;
+  margin-top: 50px;
 }
 
-div.ui.input {
-  height: 44px;
-  width: 391px;
-  text-align: left;
+.ui.button.InputButton {
+  height: 38px;
+  width: 144px;
+  background-color:  rgba(42, 75, 32, .2);
+  border: 2px solid rgba(42, 75, 32);
+  color: black;
+  border-radius: 20px;
   font-family: "Segoe UI";
-  font-size: 20px;
-  font-weight: 400;
-}
-
-div.field {
-  width: 391px;
-  font-family: "Segoe UI";
-  font-size: 20px;
-  font-weight: 400;
 }
 

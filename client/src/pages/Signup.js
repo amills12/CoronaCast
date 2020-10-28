@@ -1,13 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Header, Button, Form, Grid } from 'semantic-ui-react';
 import './CoronaCast.css';
 
+const Signup = (props) => {
+    const [signUpInfo, setSignUpInfo] = useState({
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        vPassword:""
+    })
+    
+    const submitSignUpInfo = (e) =>{
+        //This is what runs when the user hits submit, e here stands for event. 
+        //Notice how all the onChange functions change each variable in the signUpInfo class using setSignUpInfo
 
+        console.log(signUpInfo); //This prints to the webpage console not the VScode one
 
-class Signup extends React.Component {
+        //Other logic goes here
+    }
+    
+    return (
+        <html>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450, padding: 0 }}>
+                    <Header className="Title" textAlign='center'>CoronaCast</Header>
+                    <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
+                    <div className="MainBox" style={{ height: 475, paddingTop: 20}}>
+                        <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block'}}>
+                            <Form.Group widths='equal'>
+                                <Form.Input fluid label ='First Name' placeholder='First Name' onChange={e => setSignUpInfo({...signUpInfo, firstName: e.target.value})} />
+                                <Form.Input fluid label ='Last Name' placeholder='Last Name' onChange={e => setSignUpInfo({...signUpInfo, lastName: e.target.value})} />
+                            </Form.Group>
+                            <Form.Input fluid label ='Email' placeholder='Email' onChange={e => setSignUpInfo({...signUpInfo, username: e.target.value})} />
+                            <Form.Input fluid label ='Password' type='password' placeholder='Password' onChange={e => setSignUpInfo({...signUpInfo, password: e.target.value})}/>
+                            <Form.Input fluid label ='Retype Password' type='password' placeholder='Retype Password' onChange={e => setSignUpInfo({...signUpInfo, vPassword: e.target.value})}/>
+                            <Button className="InputButton">Continue</Button>
+                        </Form>
+                    </div>
+                </Grid.Column>
+            </Grid>
+        </html>
 
-    render() {
-        return (
-        <div className="CoronaCast">
+        /*<div className="CoronaCast">
             <div className="Background">
                 <div className="CoronaCast-Title" style={{top: '11vh'}}>CoronaCast</div>
                 <div className="CoronaCast-Title" style={{position: 'fixed', fontSize: '40px', marginTop: '1.2vh'}}>Welcome to CoronaCast</div>
@@ -34,9 +69,8 @@ class Signup extends React.Component {
                         </form>
                     </div>
             </div>
-        </div>
-        );
-    }
+        </div>*/
+    );
 }
 
 

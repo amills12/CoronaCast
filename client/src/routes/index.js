@@ -16,10 +16,7 @@ export default function Routes() {
         <Route path="/Login" component={Login} />
         <Route path="/SignUp" component={Signup} />
         <Route path="/Register" component={Register}/>
-
         <Route path="/Main" component={Main} isPrivate />
-
-        {}
         <Route component={Home} />
       </Switch>
     );

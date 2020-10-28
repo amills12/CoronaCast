@@ -3,6 +3,7 @@ import React from 'react';
 import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
+import SignUpButton from '../components/SignUpButton';
 import './CoronaCast.css';
 
 const countyOptions = [
@@ -20,7 +21,7 @@ const Home = (props) => {
           <div className="MainBox">
             {!isAuthenticated && (<LoginButton />)}
             {isAuthenticated && (<LogOutButton />)}
-            <a href="/signup" class="ui button">Sign Up</a>
+            <SignUpButton />
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
             <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>

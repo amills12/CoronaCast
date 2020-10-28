@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Button, Form, Segment, Grid } from 'semantic-ui-react';
+import { Header, Button, Form, Grid } from 'semantic-ui-react';
 import './CoronaCast.css';
 
 const Login = (props) => {

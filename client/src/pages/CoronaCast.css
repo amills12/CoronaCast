@@ -59,7 +59,7 @@ a.HeaderText {
   font-weight: 400;
 }
 
-a.ui.button {
+.ui.button.AuthButton {
   background-color: rgba(42, 75, 32, .2);;
   height: 93px;
   width: 358px;
@@ -79,3 +79,4 @@ a.ui.button {
   border-radius: 20px;
   font-family: "Segoe UI";
 }
+

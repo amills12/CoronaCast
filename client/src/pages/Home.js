@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
+import LoginButton from '../components/LoginButton';
 import './CoronaCast.css';
 
 const countyOptions = [
@@ -13,7 +14,7 @@ const Home = (props) => {
         <Grid.Column style={{ maxWidth: 432, padding: 0 }}>
           <Header className="Title"> CoronaCast </Header>
           <div className="MainBox">
-            <a href="/login" class="ui button">Login</a>
+            <LoginButton />
             <a href="/signup" class="ui button">Sign Up</a>
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>

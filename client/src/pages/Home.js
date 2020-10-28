@@ -1,6 +1,8 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
 import LoginButton from '../components/LoginButton';
+import LogOutButton from '../components/LogOutButton';
 import './CoronaCast.css';
 
 const countyOptions = [
@@ -8,13 +10,16 @@ const countyOptions = [
 ]
 
 const Home = (props) => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <html>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 432, padding: 0 }}>
           <Header className="Title"> CoronaCast </Header>
           <div className="MainBox">
-            <LoginButton />
+            {!isAuthenticated && (<LoginButton />)}
+            {isAuthenticated && (<LogOutButton />)}
             <a href="/signup" class="ui button">Sign Up</a>
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>

@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const fs = require('fs')
 const url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv';
 //this file just prints the csv file from the link above. 
 axios(url)
@@ -9,6 +10,9 @@ axios(url)
     const $ = cheerio.load(html, {
         xmlMode: true,
     })
-    console.log(html)
+    fs.writeFile('covidCases.csv', html, function(err){
+      if (err)
+      return console.log(err);
+    })  
   })
   .catch(console.error);

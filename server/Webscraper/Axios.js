@@ -1,11 +1,8 @@
-// pl-scraper.js
-
 const axios = require('axios');
 const cheerio = require('cheerio');
-
+const fs = require('fs')
 const url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv';
-console.log("I'm here now")
-//<div class="col-xs-12 col-md-12 outer--box outer--box--left">
+//this file just downloads the csv file from the link above. 
 axios(url)
   .then(response => {
     const html = response.data;
@@ -13,6 +10,9 @@ axios(url)
     const $ = cheerio.load(html, {
         xmlMode: true,
     })
-    console.log(html)
+    fs.writeFile('covidCases.csv', html, function(err){
+      if (err)
+      return console.log(err);
+    })  
   })
   .catch(console.error);

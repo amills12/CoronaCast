@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
-import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
+import { Dropdown, Header, Grid, Divider, Input } from 'semantic-ui-react';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
 import SignUpButton from '../components/SignUpButton';
@@ -25,7 +25,7 @@ const Home = (props) => {
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
             <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
-            <Dropdown className="InputText" style={{ width: 391, height: 44 }} placeholder='Zip Code' search selection options={countyOptions} />
+            <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3' search selection options={countyOptions} />
           </div>
         </Grid.Column>
       </Grid>

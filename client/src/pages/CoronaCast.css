@@ -12,9 +12,9 @@ html {
 .MainBox {
   width: 432px;
   height: 550px;
-  border: 2px solid rgba(42, 75, 32, .8);
-  border-radius: 60px;
-  background-color: rgba(1, 71, 52, .2);
+  border-radius: 40px;
+  background-color: #DEE3E3;
+  box-shadow: 3px 5px 20px #555555;
 }
 
 .ui.header.Title {
@@ -47,7 +47,7 @@ a.HeaderText {
 }
 
 
-.ui.dropdown.InputText {
+.ui.input.InputText {
   font-family: "Segoe UI";
   font-size: 20px;
   font-weight: 400;
@@ -60,10 +60,9 @@ a.HeaderText {
 }
 
 .ui.button.AuthButton {
-  background-color: rgba(42, 75, 32, .2);;
-  height: 93px;
-  width: 358px;
-  border: 2px solid rgba(42, 75, 32);
+  background-color: rgba(42, 10, 62, .2);
+  height: 95px;
+  width: 360px;
   font-size: 35px;
   font-weight: 400;
   border-radius: 30px;

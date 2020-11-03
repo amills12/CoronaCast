@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Main from '../pages/Main';
 import Register from '../pages/Register';
+import Admin from '../pages/Admin';
 
 
 export default function Routes() {
@@ -16,6 +17,7 @@ export default function Routes() {
         <Route path="/Login" component={Login} />
         <Route path="/SignUp" component={Signup} />
         <Route path="/Register" component={Register}/>
+        <Route path="/Admin" component={Admin}/>
         <Route path="/Main" component={Main} isPrivate />
         <Route component={Home} />
       </Switch>

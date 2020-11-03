@@ -52,6 +52,7 @@ a.HeaderText {
   font-size: 20px;
   font-weight: 400;
 }
+
 .ui.form.InputBox {
   width: 391px;
   font-family: "Segoe UI";
@@ -72,10 +73,8 @@ a.HeaderText {
 .ui.button.InputButton {
   height: 38px;
   width: 144px;
-  background-color:  rgba(42, 75, 32, .2);
-  border: 2px solid rgba(42, 75, 32);
+  background-color: rgba(42, 10, 62, .2);
   color: black;
   border-radius: 20px;
   font-family: "Segoe UI";
 }
-

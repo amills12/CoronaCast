@@ -13,16 +13,16 @@ const Home = (props) => {
   return (
     <html>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 432, padding: 0 }}>
+        <Grid.Column style={{ maxWidth: 450}}>
           <Header className="Title"> CoronaCast </Header>
-          <div className="MainBox">
+          <div className="MainBox" style={{paddingBottom: 40 }}>
             {!isAuthenticated && (<LoginButton />)}
             {!isAuthenticated && (<SignUpButton />)}
             {isAuthenticated && (<LogOutButton />)}
             {isAuthenticated && (<UserSettingsButton />)}
-            <Divider></Divider>
-            <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
-            <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
+            <Divider style={{marginTop: 30}}></Divider>
+            <Header className="InsideText" as="h2">Or Look Up A Report Using Zip Code</Header>
+            {/* <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header> */}
             <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3'/>
           </div>
         </Grid.Column>

@@ -1,14 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
-import { Dropdown, Header, Grid, Divider, Input } from 'semantic-ui-react';
+import { Header, Grid, Divider, Input } from 'semantic-ui-react';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
 import SignUpButton from '../components/SignUpButton';
+import UserSettingsButton from '../components/UserSettingsButton';
 import './CoronaCast.css';
-
-const countyOptions = [
-  { key: 'Coming In Sprint 3', text: 'Coming In Sprint 3' }
-]
 
 const Home = (props) => {
   const { isAuthenticated } = useAuth0();
@@ -20,25 +17,17 @@ const Home = (props) => {
           <Header className="Title"> CoronaCast </Header>
           <div className="MainBox">
             {!isAuthenticated && (<LoginButton />)}
+            {!isAuthenticated && (<SignUpButton />)}
             {isAuthenticated && (<LogOutButton />)}
-            <SignUpButton />
+            {isAuthenticated && (<UserSettingsButton />)}
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
             <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
-            <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3' search selection options={countyOptions} />
+            <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3'/>
           </div>
         </Grid.Column>
       </Grid>
     </html>
-
-    /*              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px',  opacity: 0.5, left: 15, marginTop: '7vh'
-               }}/> 
-                <div className="HeaderText" style= {{fontSize: '40px', marginTop: '5vh'}}>or</div>
-              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px', opacity: 0.5, right: 15
-               }}/>   
-              */
   );
 }
 

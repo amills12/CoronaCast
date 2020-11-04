@@ -4,6 +4,7 @@ import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
 import SignUpButton from '../components/SignUpButton';
+import SettingsButton from '../components/SettingsButton';
 import './CoronaCast.css';
 
 const countyOptions = [
@@ -21,7 +22,8 @@ const Home = (props) => {
           <div className="MainBox">
             {!isAuthenticated && (<LoginButton />)}
             {isAuthenticated && (<LogOutButton />)}
-            <SignUpButton />
+            {!isAuthenticated && (<SignUpButton />)}
+            {isAuthenticated && (<SettingsButton />)}
             <Divider></Divider>
             <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
             <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
@@ -31,14 +33,6 @@ const Home = (props) => {
       </Grid>
     </html>
 
-    /*              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px',  opacity: 0.5, left: 15, marginTop: '7vh'
-               }}/> 
-                <div className="HeaderText" style= {{fontSize: '40px', marginTop: '5vh'}}>or</div>
-              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px', opacity: 0.5, right: 15
-               }}/>   
-              */
   );
 }
 

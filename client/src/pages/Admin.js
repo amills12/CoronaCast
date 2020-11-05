@@ -1,9 +1,24 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Grid, Header, Button } from 'semantic-ui-react';
 
 const Admin = (props) => {
     const { user } = useAuth0();
+
+    const [hasError, setErrors] = useState(false);
+    const [planets, setPlanets] = useState({});
+
+  async function fetchData() {
+    const res = await fetch("http://localhost:5000/api/footballClubs/");
+    res
+      .json()
+      .then(res => setPlanets(res))
+      .catch(err => setErrors(err));
+  }
+
+  useEffect(() => {
+    fetchData();
+  });
 
     if (user.name === "alexandermills@ufl.edu") {
         return (
@@ -12,7 +27,9 @@ const Admin = (props) => {
                     <Grid.Column style={{ align: 'center', maxWidth: 400 }}>
                         <div className="MainBox" style={{ padding: 40 }}>
                             <Header> Welcome Admin! </Header>
-                            <p>Wait a second, you're supposed to be here!</p>
+                            <p>
+                                {JSON.stringify(planets)}
+                            </p>
                             <Button href="/" className="InputButton">Go Home</Button>
                         </div>
                     </Grid.Column>

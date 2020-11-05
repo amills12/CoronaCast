@@ -4,13 +4,13 @@ import User from "../models/userModel.js";
 export const create = async (req, res) => {
   /* get the user data from req.body */
   /* Then save the user to the database */
-  const user = req.body;
-  if (!user) {
+  const userData = req.body;
+  if (!userData) {
     return res.status(200).send({
       error: "Could not create user",
     });
   }
-  await new User(user).save()
+  await new User(userData).save()
     .then((data) => {
       res.json(data);
     })
@@ -19,6 +19,7 @@ export const create = async (req, res) => {
     });
 };
 
+
 // Show the current user
 export const read = async (req, res) => {
   /*get the user id from the req.params */
@@ -26,19 +27,35 @@ export const read = async (req, res) => {
   /* If the user data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
   let id = req.params.userID;
   await User.findById(id)
-    .then((user) => {
-      if (!user) {
+    .then((userData) => {
+      if (!userData) {
         return res.status(200).send({
           error: "User not found with an Id " + id,
         });
       }
-      res.json(user);
+      res.json(userData);
     })
     .catch((err) => {
       res.status(200).send({
         error: err.message || "An unknown error has occurred.",
       });
     });
+};
+
+
+export const getByEmail = async(req, res) => {
+
+  let em = req.params.email;
+  await User.find({email : em}, (err, data) => {
+    
+    if (err)
+      return res.status(200).send({
+        message: err.message || "An unknown error occurred"
+      });
+
+      return res.json(data);
+  })
+
 };
 
 

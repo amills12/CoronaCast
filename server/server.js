@@ -1,5 +1,6 @@
 import userRouter from './routes/userRouter.js';
 import express from 'express';
+import bodyParser from 'body-parser';
 import {connectToDatabase} from './connectMongodb.js';
 
 //connect to database
@@ -18,6 +19,12 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-app.use('/api/users/', userRouter);
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+
+app.use('/api/userData/', userRouter);
 
 app.listen(port, () => console.log(`Server now running on port ${port}!`));

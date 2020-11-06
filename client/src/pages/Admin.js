@@ -4,12 +4,18 @@ import { Grid, Header, Button, Label, Table } from 'semantic-ui-react';
 
 const Admin = (props) => {
     const { user } = useAuth0();
-
     const [hasError, setErrors] = useState(false);
     const [serverUsers, setServerUsers] = useState({});
+    var dirName = "http://localhost:5000"
+
+    if (process.env.NODE_ENV === 'production')
+    {
+        // If we're deployed to heroku
+        dirName = "https://coronacast2020.herokuapp.com/"
+    }
 
     async function fetchData() {
-        const res = await fetch("http://localhost:5000/api/footballClubs/");
+        const res = await fetch(dirName + "/api/userData");
         res
             .json()
             .then(res => setServerUsers(res))
@@ -32,13 +38,25 @@ const Admin = (props) => {
                                 <Table.Header>
                                     <Table.Row>
                                         <Table.HeaderCell>User Names</Table.HeaderCell>
+                                        <Table.HeaderCell>Emails</Table.HeaderCell>
+                                        <Table.HeaderCell>State</Table.HeaderCell>
+                                        <Table.HeaderCell>County</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
                                 {result.map(el => {
                                     return (
                                         <Table.Row key={el.id}>
                                             <Table.Cell>
-                                                <Label>{el.school}</Label>
+                                                <Label>{el.first + " " + el.last}</Label>
+                                            </Table.Cell>
+                                            <Table.Cell>
+                                                <Label>{el.email}</Label>
+                                            </Table.Cell>
+                                            <Table.Cell>
+                                                <Label>{el.state}</Label>
+                                            </Table.Cell>
+                                            <Table.Cell>
+                                                <Label>{el.county}</Label>
                                             </Table.Cell>
                                         </Table.Row>
                                     );

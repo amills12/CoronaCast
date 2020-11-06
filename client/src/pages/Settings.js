@@ -41,10 +41,10 @@ const Settings = (props) => {
         isAuthenticated && (
         <html>
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450, padding: 0 }}>
+                <Grid.Column style={{ maxWidth: 450}}>
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
-                    <div className="MainBox" style={{ height: 475, paddingTop: 20}}>
+                    <div className="MainBox" style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20}}>
                         <Form className="InputBox" onSubmit={submitSignUpInfo} style={{ display: 'inline-block'}}>
                             <Form.Group widths='equal'>
                                 <Form.Input fluid label ='First Name' placeholder='First Name' onChange={e => setSignUpInfo({...signUpInfo, firstName: e.target.value})} />

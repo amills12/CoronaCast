@@ -1,44 +1,35 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
-import { Dropdown, Header, Grid, Divider } from 'semantic-ui-react';
+import { Header, Grid, Divider, Input } from 'semantic-ui-react';
+import Loading from '../components/Loading';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
 import SignUpButton from '../components/SignUpButton';
+import UserSettingsButton from '../components/UserSettingsButton';
 import './CoronaCast.css';
 
-const countyOptions = [
-  { key: 'Coming In Sprint 3', text: 'Coming In Sprint 3' }
-]
-
 const Home = (props) => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
+  if(isLoading) return <Loading/>
   return (
     <html>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 432, padding: 0 }}>
+        <Grid.Column style={{ maxWidth: 450}}>
           <Header className="Title"> CoronaCast </Header>
-          <div className="MainBox">
+          <div className="MainBox" style={{paddingBottom: 40 }}>
             {!isAuthenticated && (<LoginButton />)}
+            {!isAuthenticated && (<SignUpButton />)}
             {isAuthenticated && (<LogOutButton />)}
-            <SignUpButton />
-            <Divider></Divider>
-            <Header className="InsideText" as="h2">Or Look Up A Report Using:</Header>
-            <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header>
-            <Dropdown className="InputText" style={{ width: 391, height: 44 }} placeholder='Zip Code' search selection options={countyOptions} />
+            {isAuthenticated && (<UserSettingsButton />)}
+            <Divider style={{marginTop: 30}}></Divider>
+            <Header className="InsideText" as="h2">CoronaCast Using Zip Code</Header>
+            {/* <Header className="HeaderText" textAlign='left' style={{ marginLeft: '20px' }}>Zip Code</Header> */}
+            <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3'/>
           </div>
         </Grid.Column>
       </Grid>
     </html>
-
-    /*              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px',  opacity: 0.5, left: 15, marginTop: '7vh'
-               }}/> 
-                <div className="HeaderText" style= {{fontSize: '40px', marginTop: '5vh'}}>or</div>
-              
-              <div style= {{position: 'absolute', color: '#707070', backgroundColor: '#707070', height: '0.12vh', borderColor: '#707070', width: '175px', opacity: 0.5, right: 15
-               }}/>   
-              */
   );
 }
 

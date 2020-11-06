@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose') ;
 
 const covidSchema = new mongoose.Schema({
     date: { type: Date, required: true },
@@ -7,6 +7,10 @@ const covidSchema = new mongoose.Schema({
     fips: {type: Number, required: false}, 
     cases: {type: Number,required: true}, 
     deaths: {type: Number, required: true}
-});
+},
+    {collection: 'covidmodels'}
 
-export default mongoose.model('covidModel', covidSchema);
+);
+
+
+modules.export = mongoose.model('covidModel', covidSchema);

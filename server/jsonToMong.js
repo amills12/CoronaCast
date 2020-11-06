@@ -1,12 +1,8 @@
-"use strict";
-/*
-  Import modules/files you may need to correctly run the script.
- */
-import { readJsonFile } from "./readJson.js";
-import covidModel from "./models/covidModel.js";
-import { fstat } from "fs";
+const fs = require("fs")
+const readJsonFile = require("./readJson.js")
+const covidModel = require("./models/covidModel.js")
 
-const count = async () => {
+exports.count = async () => {
   // This prints the count to the console
   // FootballClub.countDocuments({}, (err, c) => console.log("count is", c))
   // This returns a promise that stores the count and has to be awaited
@@ -28,7 +24,7 @@ const report = async (err, str) => {
   console.log(str, c);
 };
 
-const saveDataInDB = async (covidData) => {
+exports.saveDataInDB = async (covidData) => {
   //save all clubs into the database
   return await new Promise(async (res, rej) => {
     /*
@@ -47,14 +43,14 @@ const saveDataInDB = async (covidData) => {
   });
 };
 
-const deleteDataInDB = async () => {
+exports.deleteDataInDB = async () => {
   //delete all clubs from the database
   return await covidModel.deleteMany((err) => {
     if (err) throw err;
   });
 };
 
-const jsonToMongo = () => {
+exports.jsonToMongo = () => {
   const done = true;
   return new Promise(async (res, rej) => {
     /*
@@ -89,5 +85,3 @@ const jsonToMongo = () => {
       });
   });
 };
-
-export { saveDataInDB, deleteDataInDB, count, jsonToMongo };

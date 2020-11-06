@@ -1,6 +1,6 @@
-import * as fs from "fs";
+const fs = require("fs")
 
-const readJsonFile = () => {
+express.readJsonFile = () => {
   return new Promise((resolve, reject) => {
     fs.readFile('Webscraper/covidCases.json', "utf8", async (err, data) => {
       /*
@@ -29,4 +29,3 @@ const readJsonFile = () => {
   
 };
 
-export { readJsonFile };

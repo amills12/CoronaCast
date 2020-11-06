@@ -1,7 +1,7 @@
-import User from "../models/userModel.js";
+const User = require("../models/userModel.js");
 
 // Create a user
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
   /* get the user data from req.body */
   /* Then save the user to the database */
   const userData = req.body;
@@ -21,7 +21,7 @@ export const create = async (req, res) => {
 
 
 // Show the current user
-export const read = async (req, res) => {
+exports.read = async (req, res) => {
   /*get the user id from the req.params */
   /* send back the user data as json from the request */
   /* If the user data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
@@ -43,7 +43,7 @@ export const read = async (req, res) => {
 };
 
 
-export const getByEmail = async(req, res) => {
+exports.getByEmail = async(req, res) => {
 
   let em = req.params.email;
   await User.find({email : em}, (err, data) => {
@@ -60,7 +60,7 @@ export const getByEmail = async(req, res) => {
 
 
 // Delete a user
-export const remove = async (req, res) => {
+exports.remove = async (req, res) => {
   let id = req.params.userID;
 
   await User.deleteOne({ _id: id }, (err) => {
@@ -76,7 +76,7 @@ export const remove = async (req, res) => {
 };
 
 // Retrieve all the directory, Users
-export const getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   //sends docs as json
   await User.find({}, (err, data) => {
     if (err)

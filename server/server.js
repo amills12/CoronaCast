@@ -1,7 +1,7 @@
 import userRouter from './routes/userRouter.js';
 import express from 'express';
 import {connectToDatabase} from './connectMongodb.js';
-import {jsonToMongo} from "./jsonToMong.js"
+//import {jsonToMongo} from "./jsonToMong.js"
 
 //connect to database
 const db = connectToDatabase().on(
@@ -12,8 +12,8 @@ const db = connectToDatabase().on(
     console.log("Successfully connected to mongoose database!");
     //populate with covid cases
     console.log("here\n")
-    await jsonToMongo()
-    console.log("\n database populated with covid cases.")
+    //await jsonToMongo()
+    //console.log("\n database populated with covid cases.")
     
   });
 

@@ -6,16 +6,15 @@ import { Grid, Header, Button, Label, Table } from 'semantic-ui-react';
 const Admin = (props) => {
     const { user } = useAuth0();
     const [serverUsers, setServerUsers] = useState([]);
-    const dirName = process.env.API_PATH || "http://localhost:5000";
     
     useEffect(() => {
         //Using axios to get from API
-        axios.get(dirName + "/api/userData")
+        axios.get("/api/userData")
             .then(res => setServerUsers(res.data))
             .catch(err => console.log(err));
 
         //The empty brackets below make it only fetch once per render
-    }, [dirName]);
+    }, []);
 
     if (user.name === "alexandermills@ufl.edu") {
         return (

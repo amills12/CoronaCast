@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react';
 import { Grid, Header, Button, Label, Table } from 'semantic-ui-react';
 
 const Admin = (props) => {
     const { user } = useAuth0();
-    const [hasError, setErrors] = useState(false);
-    const [serverUsers, setServerUsers] = useState({});
+    const [serverUsers, setServerUsers] = useState([]);
     var dirName = "http://localhost:5000"
 
     if (process.env.NODE_ENV === 'production')
@@ -13,21 +13,17 @@ const Admin = (props) => {
         // If we're deployed to heroku
         dirName = "https://coronacast2020.herokuapp.com/"
     }
-
-    async function fetchData() {
-        const res = await fetch(dirName + "/api/userData");
-        res
-            .json()
-            .then(res => setServerUsers(res))
-            .catch(err => setErrors(err));
-    }
-
+    
     useEffect(() => {
-        fetchData();
-    });
+        //Using axios to get from API
+        axios.get(dirName + "/api/userData")
+            .then(res => setServerUsers(res.data))
+            .catch(err => console.log(err));
+
+        //The empty brackets below make it only fetch once per render
+    }, []);
 
     if (user.name === "alexandermills@ufl.edu") {
-        var result = Object.values(serverUsers);
         return (
             <html>
                 <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -43,8 +39,7 @@ const Admin = (props) => {
                                         <Table.HeaderCell>County</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
-                                {result.map(el => {
-                                    return (
+                                {serverUsers.map(el => (
                                         <Table.Row key={el.id}>
                                             <Table.Cell>
                                                 <Label>{el.first + " " + el.last}</Label>
@@ -59,8 +54,7 @@ const Admin = (props) => {
                                                 <Label>{el.county}</Label>
                                             </Table.Cell>
                                         </Table.Row>
-                                    );
-                                })}
+                                    ))}
                         </Table>
                             </div>
                         <Button href="/" className="InputButton" style={{margin: 10}}>Go Home</Button>

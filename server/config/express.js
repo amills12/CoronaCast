@@ -3,6 +3,7 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
+    cors = require('cors')
     exampleRouter = require('../routes/examples.server.routes');
     
     //Import routers here
@@ -27,6 +28,8 @@ module.exports.init = () => {
 
     // enable request logging for development debugging
     app.use(morgan('dev'));
+
+    app.use(cors())
 
     // body parsing middleware
     app.use(bodyParser.json());

@@ -1,6 +1,6 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-const fs = require('fs')
+import axios from "axios";
+import cheerio from "cheerio";
+import fs from "fs";
 const url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv';
 //this file just downloads the csv file from the link above. 
 axios(url)

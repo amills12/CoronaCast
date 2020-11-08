@@ -1,7 +1,7 @@
-import User from "../models/userModel.js";
+const User = require("../models/userModel.js");
 
 // Create a user
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
   /* get the user data from req.body */
   /* Then save the user to the database */
   const userData = req.body;
@@ -20,8 +20,8 @@ export const create = async (req, res) => {
 };
 
 
-// Show the current user by ID (NOT USED)
-export const read = async (req, res) => {
+// Show the current user
+exports.read = async (req, res) => {
   /*get the user id from the req.params */
   /* send back the user data as json from the request */
   /* If the user data could not be found, be sure to send back a response in the following format: {error: 'Some message that indicates an error'} */
@@ -42,8 +42,8 @@ export const read = async (req, res) => {
     });
 };
 
-//shows user by email
-export const getByEmail = async(req, res) => {
+
+exports.getByEmail = async(req, res) => {
 
   let em = req.params.email;
   await User.find({email : em}, (err, data) => {
@@ -59,7 +59,7 @@ export const getByEmail = async(req, res) => {
 };
 
 //deletes user by email
-export const deleteByEmail = async(req, res) => {
+exports.deleteByEmail = async(req, res) => {
   let em = req.params.email;
 
   await User.deleteOne({email : em}, (err, data) => {
@@ -75,7 +75,7 @@ export const deleteByEmail = async(req, res) => {
 
 };
 
-export const update = async (req, res) => {
+exports.update = async (req, res) => {
   //get both email and new data from the request
   //replace the user's properties in the database with the new properties
   //save user
@@ -115,8 +115,8 @@ export const update = async (req, res) => {
 
 
 
-// Delete a user by ID (NOT USED)
-export const remove = async (req, res) => {
+// Delete a user
+exports.remove = async (req, res) => {
   let id = req.params.userID;
 
   await User.deleteOne({ _id: id }, (err) => {
@@ -132,7 +132,7 @@ export const remove = async (req, res) => {
 };
 
 // Retrieve all the directory, Users
-export const getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   //sends docs as json
   await User.find({}, (err, data) => {
     if (err)

@@ -1,6 +1,6 @@
-import * as userController from '../controllers/userController.js';
-import express from 'express'; //refers to Express the middleware helper for Node.js
+const express = require('express');
 const userRouter = express.Router();
+const userController = require('../controllers/userController.js');
 
 //gets all users
 userRouter.get('/', userController.getAllUsers);
@@ -23,5 +23,4 @@ userRouter.delete('/:email', userController.deleteByEmail);
 //shows one user
 //userRouter.get('/:userID', userController.read);
 
-
-export default userRouter;
+module.exports = userRouter;

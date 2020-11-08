@@ -1,23 +1,25 @@
-"use strict";
-const fs = require('fs');
+//const fs = require('fs');
 const MailService = require('./MailService');
 const mailService = new MailService();
 
-const rawdata = fs.readFileSync('email.content.json');
-const info = JSON.parse(rawdata);
+//const rawdata = fs.readFileSync('email.content.json');
+//const info = JSON.parse(rawdata);
 // console.log(info);
 
-const mailInfo = {
+exports.sendTestWelcomeEmail = (email, firstName) => {
+
+  const mailInfo = {
     from: "backend@coronacast.dev",
-    to: info.email,
-    subject: info.subject,
+    to: email,
+    subject: "Welcome to CoronaCast!",
     template: "welcome",
     context: {
-      firstName: info.firstName,
-      content: info.content
+      firstName: firstName,
+      content: "Lorem ipsum or whatever."
     }
   };
-  
-mailService.verify();
 
-mailService.sendMail(mailInfo);
+  mailService.verify();
+
+  mailService.sendMail(mailInfo);
+}

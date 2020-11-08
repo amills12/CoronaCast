@@ -10,7 +10,7 @@ class MailService {
         extname: ".hbs"
       },
       extName: ".hbs",
-      viewPath: "views"
+      viewPath: "emails/views"
     };
 
     this._transporter = nodemailer.createTransport({

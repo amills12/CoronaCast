@@ -3,21 +3,24 @@ const fs = require('fs');
 const GmailService = require('./GmailService');
 const gmail = new GmailService();
   
-const rawdata = fs.readFileSync('email.content.json');
-const info = JSON.parse(rawdata);
+// const rawdata = fs.readFileSync('email.content.json');
+// const info = JSON.parse(rawdata);
 // console.log(info);
+
+exports.sendWelcomeEmail = (email, firstName) => {
 
 const mailInfo = {
     from: "coronacast.dev@gmail.com",
-    to: info.email,
-    subject: info.subject,
+    to: email,
+    subject: "Another Test Email Appears...",
     template: "welcome",
     context: {
-      firstName: info.firstName,
-      content: info.content
+      firstName: firstName,
+      content: "Lorem ipsum or whatever."
     }
   };
   
-gmail.verify();
+  gmail.verify();
 
-gmail.sendMail(mailInfo);
+  gmail.sendMail(mailInfo);
+}

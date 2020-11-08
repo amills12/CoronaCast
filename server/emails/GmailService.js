@@ -1,9 +1,9 @@
 const nodemailer =  require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
-const fs = require('fs');
+//const fs = require('fs');
 
-const rawdata = fs.readFileSync('credentials.json');
-const login = JSON.parse(rawdata);
+//const rawdata = fs.readFileSync('./credentials.json');
+//const login = JSON.parse(rawdata);
 // console.log(login);
 
 class GmailService {
@@ -15,7 +15,7 @@ class GmailService {
         extname: ".hbs"
       },
       extName: ".hbs",
-      viewPath: "views"
+      viewPath: "emails/views"
     };
 
     this._transporter = nodemailer.createTransport({
@@ -23,8 +23,8 @@ class GmailService {
         port: 465,
         secure: true, // use SSL
         auth: {
-          user: login.email,
-          pass: login.password
+          user: "coronacast.dev@gmail.com",
+          pass: "RuntimeTerrorFall2020"
         }
     });
 

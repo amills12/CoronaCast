@@ -20,7 +20,7 @@ export const create = async (req, res) => {
 };
 
 
-// Show the current user
+// Show the current user by ID (NOT USED)
 export const read = async (req, res) => {
   /*get the user id from the req.params */
   /* send back the user data as json from the request */
@@ -42,7 +42,7 @@ export const read = async (req, res) => {
     });
 };
 
-
+//shows user by email
 export const getByEmail = async(req, res) => {
 
   let em = req.params.email;
@@ -58,8 +58,64 @@ export const getByEmail = async(req, res) => {
 
 };
 
+//deletes user by email
+export const deleteByEmail = async(req, res) => {
+  let em = req.params.email;
 
-// Delete a user
+  await User.deleteOne({email : em}, (err, data) => {
+    
+    if (err)
+      return res.status(200).send({
+        message: err.message || "An unknown error occurred"
+      });
+      res.send({
+        error: em + " has been deleted successfully",
+      });
+  })
+
+};
+
+export const update = async (req, res) => {
+  //get both email and new data from the request
+  //replace the user's properties in the database with the new properties
+  //save user
+  const user = req.body;
+  const em = req.params.email;
+  if (!user) {
+    return res.status(200).send({
+      error: "User not found",
+    });
+  }
+
+  await User.find({email: em})
+    .then((data) => {
+      data.email = user.email;
+      data.state = user.state;
+      data.county = user.county;
+      data.first = user.first;
+      data.last = user.last;
+      data.frequency = user.frequency;
+      data
+        .save()
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((err) => {
+          res.status(200).send({
+            error: err.message || "An unknown error has occurred.",
+          });
+        });
+    })
+    .catch((err) => {
+      res.status(200).send({
+        error: err.message || "An unknown error has occurred.",
+      });
+    });
+};
+
+
+
+// Delete a user by ID (NOT USED)
 export const remove = async (req, res) => {
   let id = req.params.userID;
 

@@ -13,4 +13,4 @@ const covidSchema = new mongoose.Schema({
 );
 
 
-modules.export = mongoose.model('covidModel', covidSchema);
+module.exports = mongoose.model('covidModel', covidSchema);

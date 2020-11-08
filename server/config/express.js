@@ -7,6 +7,7 @@ const path = require('path'),
     
     //Import routers here
     userRouter = require('../routes/userRouter');
+    covidModelRouter = require('../routes/covidModelRouter');
 
 module.exports.init = () => {
     /* 
@@ -36,6 +37,7 @@ module.exports.init = () => {
 
     // add a router
     app.use('/api/userData', userRouter);
+    app.use('/api/covidData', covidModelRouter);
     app.use('/api/example', exampleRouter);
 
     if (process.env.NODE_ENV === 'production') {

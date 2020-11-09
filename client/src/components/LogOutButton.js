@@ -4,6 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 const LogOutButton = () => {
     const { logout } = useAuth0();
+    
     return (
         <Button onClick={() => logout()} className="AuthButton">Logout</Button>
     )

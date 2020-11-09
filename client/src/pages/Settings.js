@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Button, Form, Grid } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useAuth0 } from "@auth0/auth0-react"; 
 import './CoronaCast.css';
@@ -18,6 +19,7 @@ const Settings = (props) => {
 
     const { user } = useAuth0();
     const [profileInfo, setProfileInfo] = useState([]);
+    const history = useHistory();
 
     const dropdownSelect = (e, { value }) => setProfileInfo({...profileInfo, frequency: value})
 
@@ -36,6 +38,9 @@ const Settings = (props) => {
             }, (error) => {
                 console.log(error);
             });
+
+        let path = '';
+        history.push(path);
 
         console.log(profileInfo); 
     }
@@ -57,7 +62,7 @@ const Settings = (props) => {
                             <Form.Input fluid label ='State' placeholder="State" value={profileInfo.state} onChange={e => setProfileInfo({...profileInfo, state: e.target.value})}/>
                             <Form.Dropdown  className="InputText" style={{ width: 391, height: 44 }} fluid label = 'Report Frequency'placeholder="I want to receive reports..." value={profileInfo.frequency} 
                             search selection options={frequencyOptions} onChange={dropdownSelect}/>
-                            <Button href='/' type="submit" className="InputButton">Save</Button>
+                            <Button type="submit" className="InputButton">Save</Button>
                         </Form>
                     </div>
                 </Grid.Column>

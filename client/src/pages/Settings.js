@@ -57,7 +57,7 @@ const Settings = (props) => {
                             <Form.Input fluid label ='State' placeholder="State" value={profileInfo.state} onChange={e => setProfileInfo({...profileInfo, state: e.target.value})}/>
                             <Form.Dropdown  className="InputText" style={{ width: 391, height: 44 }} fluid label = 'Report Frequency'placeholder="I want to receive reports..." value={profileInfo.frequency} 
                             search selection options={frequencyOptions} onChange={dropdownSelect}/>
-                            <Button type="submit" className="InputButton">Save</Button>
+                            <Button href='/' type="submit" className="InputButton">Save</Button>
                         </Form>
                     </div>
                 </Grid.Column>

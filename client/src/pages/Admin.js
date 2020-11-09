@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react';
-import { Grid, Header, Button, Label, Table, Form, Icon } from 'semantic-ui-react';
+import { Grid, Header, Button, Table, Form, Icon } from 'semantic-ui-react';
 
 const Admin = (props) => {
     const { user } = useAuth0();

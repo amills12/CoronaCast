@@ -1,18 +1,18 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React, { useEffect, useState } from 'react';
+import React/*, { useEffect, useState }*/ from 'react';
 import { Header, Grid, Divider, Input } from 'semantic-ui-react';
 import Loading from '../components/Loading';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
 import SignUpButton from '../components/SignUpButton';
 import UserSettingsButton from '../components/UserSettingsButton';
-import axios from 'axios'
+//import axios from 'axios'
 import './CoronaCast.css';
 
 const Home = (props) => {
 
-  const { isAuthenticated, isLoading, user } = useAuth0();
-  const [profileInfo, setProfileInfo] = useState([]);
+  const { isAuthenticated, isLoading/*, user*/ } = useAuth0();
+//  const [profileInfo, setProfileInfo] = useState([]);
   
 /* useEffect(() => {
     axios.get("/api/userData/" + user.name)

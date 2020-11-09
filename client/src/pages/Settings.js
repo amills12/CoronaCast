@@ -26,7 +26,7 @@ const Settings = (props) => {
             .then(res => {
                 if(res.data[0] != null) {setProfileInfo(res.data[0])}})
             .catch(err => console.log(err));
-    }, []);
+    }, [user.name]);
     
     const submitProfileInfo = (e) => {
         

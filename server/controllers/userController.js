@@ -75,44 +75,32 @@ exports.deleteByEmail = async(req, res) => {
 
 };
 
+//updates user
 exports.update = async (req, res) => {
-  //get both email and new data from the request
-  //replace the user's properties in the database with the new properties
-  //save user
-  const user = req.body;
-  const em = req.params.email;
-  if (!user) {
+  let em = req.params.email;
+  let userData = req.body;
+
+  await User.deleteOne({email : em}, (err, data) => {
+    
+    if (err)
+      return res.status(200).send({
+        message: err.message || "An unknown error occurred"
+      });
+  })
+
+  if (!userData) {
     return res.status(200).send({
-      error: "User not found",
+      error: "Could not create user",
     });
   }
-
-  await User.find({email: em})
+  await new User(userData).save()
     .then((data) => {
-      data.email = user.email;
-      data.state = user.state;
-      data.county = user.county;
-      data.first = user.first;
-      data.last = user.last;
-      data.frequency = user.frequency;
-      data
-        .save()
-        .then((data) => {
-          res.json(data);
-        })
-        .catch((err) => {
-          res.status(200).send({
-            error: err.message || "An unknown error has occurred.",
-          });
-        });
+      res.json(data);
     })
     .catch((err) => {
-      res.status(200).send({
-        error: err.message || "An unknown error has occurred.",
-      });
+      res.status(200).send(err);
     });
-};
-
+}
 
 
 // Delete a user

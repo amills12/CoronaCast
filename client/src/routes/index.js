@@ -11,12 +11,14 @@ import PrivateRoute from '../components/PrivateRoute';
 
 export default function Routes() {
     return (
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <PrivateRoute path="/Settings" component={Settings} />
-        <PrivateRoute path="/Admin" component={Admin}/>
-        <PrivateRoute path="/Main" component={Main} />
-        <Route component={Home} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <PrivateRoute path="/Settings" component={Settings} />
+          <PrivateRoute path="/Admin" component={Admin}/>
+          <PrivateRoute path="/Main" component={Main} />
+          <Route component={Home} />
+        </Switch>
+      </BrowserRouter>
     );
   } 

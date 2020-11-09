@@ -1,14 +1,9 @@
-//const fs = require('fs');
 const MailService = require('./MailService');
 const mailService = new MailService();
 
-//const rawdata = fs.readFileSync('email.content.json');
-//const info = JSON.parse(rawdata);
-// console.log(info);
-
 exports.sendTestWelcomeEmail = (email, firstName) => {
 
-  const mailInfo = {
+  let mailInfo = {
     from: "backend@coronacast.dev",
     to: email,
     subject: "Welcome to CoronaCast!",
@@ -23,3 +18,22 @@ exports.sendTestWelcomeEmail = (email, firstName) => {
 
   mailService.sendMail(mailInfo);
 }
+
+exports.sendTestReportEmail = (email, startDate, endDate, data) => {
+
+  let mailInfo = {
+    from: "backend@coronacast.dev",
+    to: email,
+    subject: "Your CoronaCast Report is here!",
+    template: "report",
+    context: {
+      startDate: startDate,
+      endDate: endDate,
+      content: data
+    }
+  };
+
+  mailService.verify();
+
+  mailService.sendMail(mailInfo);
+};

@@ -1,10 +1,5 @@
 const nodemailer =  require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
-//const fs = require('fs');
-
-//const rawdata = fs.readFileSync('./credentials.json');
-//const login = JSON.parse(rawdata);
-// console.log(login);
 
 class GmailService {
   constructor(host, port, user, password) {

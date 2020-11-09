@@ -2,7 +2,7 @@ const nodemailer =  require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 
 class MailService {
-  constructor(host, port, user, password) {
+  constructor() {
     const options = {
       viewEngine: {
         partialsDir: __dirname + "/views/partials",
@@ -10,7 +10,7 @@ class MailService {
         extname: ".hbs"
       },
       extName: ".hbs",
-      viewPath: "emails/views"
+      viewPath: "views"
     };
 
     this._transporter = nodemailer.createTransport({

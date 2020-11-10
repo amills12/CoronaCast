@@ -1,0 +1,72 @@
+[
+    {
+        "_id": "5fa58274efc85439a4b57104",
+        "date": "2020-10-30",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10533,
+        "deaths": 75,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58275efc85439a4b57db0",
+        "date": "2020-10-31",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10582,
+        "deaths": 76,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58276efc85439a4b58a5d",
+        "date": "2020-11-01",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10706,
+        "deaths": 78,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58277efc85439a4b5970a",
+        "date": "2020-11-02",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10760,
+        "deaths": 78,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58277efc85439a4b5a3b5",
+        "date": "2020-11-03",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10842,
+        "deaths": 78,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58278efc85439a4b5b060",
+        "date": "2020-11-04",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10913,
+        "deaths": 78,
+        "__v": 0
+    },
+    {
+        "_id": "5fa58279efc85439a4b5bd0d",
+        "date": "2020-11-05",
+        "county": "Alachua",
+        "state": "Florida",
+        "fips": 12001,
+        "cases": 10996,
+        "deaths": 78,
+        "__v": 0
+    }
+]

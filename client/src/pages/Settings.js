@@ -26,7 +26,7 @@ const Settings = (props) => {
     useEffect(() => {
         axios.get("/api/userData/" + user.name)
             .then(res => {
-                if(res.data[0] != null) {setProfileInfo(res.data[0])}})
+                if(res.data != null) {setProfileInfo(res.data)}})
             .catch(err => console.log(err));
     }, [user.name]);
     

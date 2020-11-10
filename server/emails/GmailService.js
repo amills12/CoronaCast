@@ -10,7 +10,7 @@ class GmailService {
         extname: ".hbs"
       },
       extName: ".hbs",
-      viewPath: "emails/views"
+      viewPath: "server/emails/views"
     };
 
     this._transporter = nodemailer.createTransport({

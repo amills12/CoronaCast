@@ -1,3 +1,4 @@
+#CircleCI Version
 version: 2.1
 jobs:
   build:
@@ -14,9 +15,9 @@ jobs:
       # Install the client dependencies 
       - run: cd client && npm install
 
-      # Define programs to run here
-      # Run the tests file
+      # Define files to run here
+      # Run the test file
       - run: npm test
 
-      # See if the frontend builds
+      # Run the client react build
       - run: cd client && npm run-script build

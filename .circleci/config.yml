@@ -2,27 +2,21 @@ version: 2.1
 jobs:
   build:
     docker:
+      # Define what node version the project uses
       - image: node:14.10.1
 
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      # Install the server dependencies
       - run: npm install
+
+      # Install the client dependencies 
       - run: cd client && npm install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
+      # Define programs to run here
+      # Run the tests file
       - run: npm test
 
+      # See if the frontend builds
       - run: cd client && npm run-script build

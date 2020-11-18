@@ -69,54 +69,32 @@ exports.deleteByEmail = async(req, res) => {
         message: err.message || "An unknown error occurred"
       });
       res.send({
-        error: em + " has been deleted successfully",
+        message: em + " has been deleted successfully",
       });
   })
 
 };
 
-//updates user
 exports.update = async (req, res) => {
-  let em = req.params.email;
-  let userData = req.body;
+  const userData = req.body;
+  const em = req.params.email;
 
-  await User.deleteOne({email : em}, (err, data) => {
-    
-    if (err)
-      return res.status(200).send({
-        message: err.message || "An unknown error occurred"
-      });
-  })
+  await User.findOne({email : em}, (err, data) => {
+    data.email = userData.email;
+    data.state = userData.state;
+    data.county = userData.county;
+    data.first = userData.first;
+    data.last = userData.last;
+    data.frequency = userData.frequency;
 
-  if (!userData) {
-    return res.status(200).send({
-      error: "Could not create user",
-    });
-  }
-  await new User(userData).save()
-    .then((data) => {
+    data.save((err, data) => {
+      if (err)
+        return res.status(200).send({
+          message: err.message || "An unknown error occurred"
+        });
       res.json(data);
     })
-    .catch((err) => {
-      res.status(200).send(err);
-    });
-}
-
-
-// Delete a user
-exports.remove = async (req, res) => {
-  let id = req.params.userID;
-
-  await User.deleteOne({ _id: id }, (err) => {
-    if (err) {
-      return res.status(200).send({
-        error: err.message || "An unknown error occurred",
-      });
-    }
-    res.send({
-      error: id + " has been deleted successfully",
-    });
-  });
+  })
 };
 
 // Retrieve all the directory, Users

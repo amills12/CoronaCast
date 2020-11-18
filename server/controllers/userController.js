@@ -1,4 +1,5 @@
 const User = require("../models/userModel.js");
+const { sendWelcomeEmail, sendReportEmail } = require("../emails/template.gmail.js")
 
 // Create a user
 exports.create = async (req, res) => {
@@ -12,6 +13,8 @@ exports.create = async (req, res) => {
   }
   await new User(userData).save()
     .then((data) => {
+      sendWelcomeEmail(data.email, data.first);
+      sendReportEmail(data.email, "10/30/2020", "11/05/2020");
       res.json(data);
     })
     .catch((err) => {
@@ -43,19 +46,16 @@ exports.read = async (req, res) => {
 };
 
 
-exports.getByEmail = async(req, res) => {
-
+exports.getByEmail = async (req, res) => {
   let em = req.params.email;
-  await User.find({email : em}, (err, data) => {
-    
+
+  await User.findOne({ email: em }, (err, data) => {
     if (err)
       return res.status(200).send({
         message: err.message || "An unknown error occurred"
       });
-
-      return res.json(data);
+    return res.json(data);
   })
-
 };
 
 //deletes user by email

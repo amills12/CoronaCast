@@ -24,7 +24,6 @@
   "author": "Runtime Terror",
   "license": "MIT",
   "dependencies": {
-    "@auth0/auth0-react": "^1.1.0",
     "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
@@ -43,8 +42,6 @@
     "nodemailer-express-handlebars": "^4.0.0",
     "nodemon": "^1.18.10",
     "request": "^2.88.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.1",
     "should": "^13.2.3",
     "simple-statistics": "^7.3.2",
     "supertest": "^4.0.2"

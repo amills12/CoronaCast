@@ -19,6 +19,7 @@ const Settings = (props) => {
 
     const { user } = useAuth0();
     const [profileInfo, setProfileInfo] = useState([]);
+    const [isNewUser, setNewUser] = useState(false);
     const history = useHistory();
 
     const dropdownSelect = (e, { value }) => setProfileInfo({...profileInfo, frequency: value})
@@ -26,18 +27,26 @@ const Settings = (props) => {
     useEffect(() => {
         axios.get("/api/userData/" + user.name)
             .then(res => {
-                if(res.data != null) {setProfileInfo(res.data)}})
+                if(res.data != null) {
+                    setProfileInfo(res.data);
+                    setNewUser(false);}
+                else {setNewUser(true);}})
             .catch(err => console.log(err));
     }, [user.name]);
     
     const submitProfileInfo = (e) => {
-        
-        axios.post("/api/userData", profileInfo)
-            .then((response) => {
-                console.log(response);
-            }, (error) => {
-                console.log(error);
-            });
+        if (isNewUser === true) {
+            axios.post("/api/userData", profileInfo)
+                .then((response) => {
+                    console.log(response);
+                }, (error) => {
+                    console.log(error);
+                });
+        } else {
+            axios.put("/api/userData/" + user.name, profileInfo)
+                .then(res => console.log(res))
+                .catch(err => console.log(err));
+        }
 
         let path = '';
         history.push(path);
@@ -51,6 +60,7 @@ const Settings = (props) => {
                 <Grid.Column style={{ maxWidth: 450}}>
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
+                    <Header classname="Title" >{isNewUser ? 'Please fill in all information to offically join CoronaCast' : ''}</Header>
                     <div className="MainBox" style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20}}>
                         <Form className="InputBox" onSubmit={submitProfileInfo} style={{ display: 'inline-block'}}>
                             <Form.Group widths='equal'>

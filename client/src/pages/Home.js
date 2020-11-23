@@ -29,7 +29,7 @@ useEffect(() => {
   if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
     setAdmin(true);
   }}
-}); 
+}, [checked, isAuthenticated, user]); 
 
   if (isLoading) return <Loading/>
 

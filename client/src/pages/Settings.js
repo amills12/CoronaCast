@@ -68,8 +68,8 @@ const Settings = (props) => {
                                 <Form.Input fluid label ='Last Name' placeholder="Last Name" value={profileInfo.last} onChange={e => setProfileInfo({...profileInfo, last: e.target.value})} />
                             </Form.Group>
                             <Form.Input fluid label ='Email to Receive Reports' placeholder="Email" value={profileInfo.email} onChange={e => setProfileInfo({...profileInfo, email: e.target.value})} />
-                            <Form.Input fluid label ='County' placeholder="County" value={profileInfo.county} onChange={e => setProfileInfo({...profileInfo, county: e.target.value})} />
                             <Form.Input fluid label ='State' placeholder="State" value={profileInfo.state} onChange={e => setProfileInfo({...profileInfo, state: e.target.value})}/>
+                            <Form.Input fluid label ='County' placeholder="County" value={profileInfo.county} onChange={e => setProfileInfo({...profileInfo, county: e.target.value})} />
                             <Form.Dropdown  className="InputText" style={{ width: 391, height: 44 }} fluid label = 'Report Frequency'placeholder="I want to receive reports..." value={profileInfo.frequency} 
                             search selection options={frequencyOptions} onChange={dropdownSelect}/>
                             <Button type="submit" className="InputButton">Save</Button>

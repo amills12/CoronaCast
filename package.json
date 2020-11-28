@@ -35,6 +35,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "fs-extra": "^9.0.1",
+    "handlebars": "^4.7.6",
     "mocha": "^6.2.1",
     "mongoose": "^5.9.13",
     "morgan": "^1.9.1",

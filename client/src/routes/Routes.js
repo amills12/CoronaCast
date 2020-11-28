@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
 import { Route, Redirect } from 'react-router-dom'; 
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function RouteWrapper({
     component: Component,
     isPrivate,
     ...rest
 }) {
-    const signed = false;
+    const signed = useAuth0().isAuthenticated;
 
     if (isPrivate && !signed) {
         return <Redirect to="/" />;
-    }
-
-    if (!isPrivate && signed) {
-        return <Redirect to="/main" />;
     }
 
     return <Route {...rest} component={Component} />;

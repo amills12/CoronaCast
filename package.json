@@ -29,8 +29,8 @@
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "concurrently": "^4.1.0",
-    "csv2json": "^2.0.2",
     "cors": "^2.8.5",
+    "csv2json": "^2.0.2",
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
@@ -46,7 +46,8 @@
     "semantic-ui-react": "^2.0.1",
     "should": "^13.2.3",
     "simple-statistics": "^7.3.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "text-file-diff": "^1.1.2"
   },
   "homepage": "https://github.com/amills12/CoronaCast#readme"
 }

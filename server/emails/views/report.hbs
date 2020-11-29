@@ -33,13 +33,13 @@
                                             <th>Total Deaths</th>
                                         </tr>
                                         {{#each content}}
-                                            <tr align="center">
-                                                <td>{{this.date}}</td>
-                                                <td>{{this.county}}</td>
-                                                <td>{{this.state}}</td>
-                                                <td>{{this.cases}}</td>
-                                                <td>{{this.deaths}}</td>
-                                            </tr>
+                                        <tr align="center">
+                                            <td>{{format_date this.date}}</td>
+                                            <td>{{this.county}}</td>
+                                            <td>{{this.state}}</td>
+                                            <td>{{this.cases}}</td>
+                                            <td>{{this.deaths}}</td>
+                                        </tr>
                                         {{/each}}
                                     </table>
                                 </td>

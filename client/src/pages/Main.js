@@ -21,34 +21,39 @@ const Main = (props) => {
   const GetCovidData = (e) => {
     axios.get("/api/covidData/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate)
             .then(res => {
-                if(res.data.message == null) {
+                if(res.data.message == null && res.data.length != 0) {
                     console.log(res.data);
                     setCovidData(res.data);
                     setValidData(true);}
-                else {setDataNotFound(true);}})
+                else {
+                  setValidData(false);
+                  setDataNotFound(true);}})
             .catch(err => console.log(err));
 
-    var startDate = new Date(),
-      month = '' + startDate.getMonth(),
-      day = '' + startDate.getDate(),
-      year = startDate.getFullYear();
-      let startDateString = [year, month, day].join('-');
-    var endDate = new Date(),
-      month = '' + (endDate.getMonth() + 1),
-      day = '' + endDate.getDate(),
-      year = endDate.getFullYear();
-      let endDateString = [year, month, day].join('-');
-
-    newsapi.v2.topHeadlines({
-      q: 'coronavirus',
-      country: 'us',
-      from: startDateString,
-      to: endDateString,
-      language: 'en',
-      sortBy: 'relevancy'
-    }).then(res => {
-      console.log(res);
-    })
+    if (validData === true) {
+      var startDate = new Date(),
+        month = '' + startDate.getMonth(),
+        day = '' + startDate.getDate(),
+        year = startDate.getFullYear();
+        let startDateString = [year, month, day].join('-');
+      var endDate = new Date(),
+        month = '' + (endDate.getMonth() + 1),
+        day = '' + endDate.getDate(),
+        year = endDate.getFullYear();
+        let endDateString = [year, month, day].join('-');
+    
+      console.log(validData);
+      newsapi.v2.everything({
+        q: 'coronavirus ' + dataParams.state + ' ' + dataParams.county,
+        from: startDateString,
+        to: endDateString,
+        language: 'en',
+        sortBy: 'relevancy'
+      }).then(res => {
+        setNewsData(res.articles);
+        console.log(res.articles);
+      })
+    }
   }
 
   return (
@@ -64,11 +69,9 @@ const Main = (props) => {
                 <Button href='/settings' className="AuthButton" style={{ marginTop: 20 }}>User Settings</Button>
               </div>
             </Grid.Column>
-
         </Grid> 
       </Container>
-      <Container>
-        
+      <Container>       
         { validData ? 
           <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{maxWidth: 'fit-content'}}> 
@@ -100,17 +103,23 @@ const Main = (props) => {
                   </Table.Body>
                 </Table>
                 </div>
-              </div>
-              <div className="MainBox" style={{padding: 20}}>
-              
-              </div>
+                <Grid columns={3} divided>
+                  {newsData.map(el => (
+                    <Grid.Column width={5}>
+                      <img src={el.urlToImage}/>
+                      <h>{el.title}</h>
+                      <p>{el.description}</p>
+                    </Grid.Column>
+                  ))}
+                </Grid>
+              </div>            
           </Grid.Column>
         </Grid>
         : 
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{maxWidth: 'fit-content'}}> 
             <div className="MainBox" style={{padding: 20}}>
-              {dataNotFound ? <Header>Covid data not found, please check inputted information</Header> : null}
+              {dataNotFound ? <Header>Covid data not found, please check form information</Header> : null}
               <Form className="InputBox" onSubmit={GetCovidData}>
                 <Form.Input fluid label='State' placeholder="State" onChange={e => setDataParams({...dataParams, state: e.target.value})}/>
                 <Form.Input fluid label='County' placeholder="County" onChange={e => setDataParams({...dataParams, county: e.target.value})}/>
@@ -121,8 +130,7 @@ const Main = (props) => {
             </div>
           </Grid.Column>
         </Grid>
-        } 
-        
+        }        
       </Container>
     </html>
   );

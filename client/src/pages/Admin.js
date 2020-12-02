@@ -63,7 +63,7 @@ const Admin = (props) => {
             <html>
                 <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                     <Grid.Column style={{maxWidth: 'fit-content'}}>
-                    <div className="MainBox" style={{ padding: 40, margin: 100 }}>
+                    <div className="MainBox" style={{ padding: 40, margin: 20 }}>
                         <Header> Welcome Admin! </Header>
                             <div style={{ width: 800, height: 300, overflowY: 'scroll' }}>
                         <Table celled striped selectable>
@@ -119,13 +119,14 @@ const Admin = (props) => {
                                         onChange={e => setSelectedUser({...selectedUser, county: e.target.value})} />
                                     <Form.Input fluid label='State' placeholder="State" value={selectedUser.state} 
                                         onChange={e => setSelectedUser({...selectedUser, state: e.target.value})} />
-                                    <Form.Dropdown fluid label='Frequency' value={selectedUser.frequency} 
-                                        search selection options={frequencyOptions} onChange={dropdownSelect}/>
                                 </Form.Group>
+                                <Form.Dropdown fluid label='Frequency' value={selectedUser.frequency} 
+                                        search selection options={frequencyOptions} onChange={dropdownSelect}/>
                                 <Button.Group>
                                     <Button onClick={() => {
                                         deleteUser()
-                                        }}> Delete </Button>
+                                        }}
+                                        negative> Delete </Button>
                                     <Button.Or />
                                     <Button type="submit" onClick={() => {
                                         editUser()}} 

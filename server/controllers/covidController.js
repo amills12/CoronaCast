@@ -48,7 +48,7 @@ exports.getPrediction = async (req, res) => {
                 
 
         //I added functions that run a simple linear fit on the time frame you put the data in for cases and deaths and also 
-        //sums the data for seaths and cases in that time frame. 
+        //sums the data for deaths and cases in that time frame. 
         message = [
             {"type": "daily new case estimate", "value": linearFitCases(data)},
             {"type": "daily new death estimate","value": linearFitDeaths(data)},
@@ -56,7 +56,6 @@ exports.getPrediction = async (req, res) => {
             {"type": "deaths in range",         "value": sumDeaths(data)}
         ]
         res.json(message);
-        console.log(m[1])
     });
 };     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            

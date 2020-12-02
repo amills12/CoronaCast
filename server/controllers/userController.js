@@ -58,21 +58,43 @@ exports.getByEmail = async (req, res) => {
   })
 };
 
+//deletes user by email
+exports.deleteByEmail = async(req, res) => {
+  let em = req.params.email;
 
-// Delete a user
-exports.remove = async (req, res) => {
-  let id = req.params.userID;
-
-  await User.deleteOne({ _id: id }, (err) => {
-    if (err) {
+  await User.deleteOne({email : em}, (err, data) => {
+    
+    if (err)
       return res.status(200).send({
-        error: err.message || "An unknown error occurred",
+        message: err.message || "An unknown error occurred"
       });
-    }
-    res.send({
-      error: id + " has been deleted successfully",
-    });
-  });
+      res.send({
+        message: em + " has been deleted successfully",
+      });
+  })
+
+};
+
+exports.update = async (req, res) => {
+  const userData = req.body;
+  const em = req.params.email;
+
+  await User.findOne({email : em}, (err, data) => {
+    data.email = userData.email;
+    data.state = userData.state;
+    data.county = userData.county;
+    data.first = userData.first;
+    data.last = userData.last;
+    data.frequency = userData.frequency;
+
+    data.save((err, data) => {
+      if (err)
+        return res.status(200).send({
+          message: err.message || "An unknown error occurred"
+        });
+      res.json(data);
+    })
+  })
 };
 
 // Retrieve all the directory, Users

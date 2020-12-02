@@ -3,12 +3,12 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    cors = require('cors')
-    exampleRouter = require('../routes/examples.server.routes');
+    cors = require('cors'),
+    exampleRouter = require('../routes/examples.server.routes'),
     
     //Import routers here
-    userRouter = require('../routes/userRouter');
-    covidModelRouter = require('../routes/covidModelRouter');
+    userRouter = require('../routes/userRouter'),
+    covidModelRouter = require('../routes/covidModelRouter'),
     covidStatsRouter = require('../routes/covidStatsRouter');
 
 module.exports.init = () => {

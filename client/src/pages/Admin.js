@@ -3,33 +3,60 @@ import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react';
 import { Grid, Header, Button, Table, Form, Icon } from 'semantic-ui-react';
 
+const frequencyOptions = [
+    { key: 'never', text: 'Never', value: 'never'}, 
+    { key: 'daily', text: 'Daily', value: 'daily'},
+    { key: 'weekly', text: 'Weekly', value: 'weekly'},
+    { key: 'bimonthly', text: 'Bi-Monthly', value: 'bi-monthly'},
+    { key: 'monthly', text: 'Monthly', value: 'monthly'}
+  ]
+
 const Admin = (props) => {
     const { user } = useAuth0();
     const [serverUsers, setServerUsers] = useState([]);
-    const [open, setOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState([]);
+    const [open, setOpen] = useState(false);
+
+    const dropdownSelect = (e, { value }) => setSelectedUser({...selectedUser, frequency: value})
 
     const openUserEdit = (data) => {
         if (open === true && data === selectedUser)
-            setOpen(false);
-
+            setOpen(!open);
+        
         if (open === true && data !== selectedUser)
             setSelectedUser(data);
 
         if (open === false) {
             setSelectedUser(data);
-            setOpen(true);
+            setOpen(!open);
         }
-        console.log(selectedUser);
         
     };
+
+    const editUser = () => {
+        setOpen(false);
+        axios.put("/api/userData/" + selectedUser.email, selectedUser)
+            .then(res => {console.log(res)})
+            .catch(err => console.log(err));
+
+    }
+
+    const deleteUser = () => {
+        setOpen(false);
+        axios.delete("/api/userData/" + selectedUser.email)
+            .then(res => {
+                console.log(res);
+                setSelectedUser(null);})
+            .catch(err => console.log(err));
+
+    }
     
     useEffect(() => {
         axios.get("/api/userData")
             .then(res => setServerUsers(res.data))
             .catch(err => console.log(err));
 
-    }, []);
+    }, [open]);
 
     if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
         return (
@@ -44,8 +71,8 @@ const Admin = (props) => {
                                     <Table.Row>
                                         <Table.HeaderCell>User</Table.HeaderCell>
                                         <Table.HeaderCell>Email</Table.HeaderCell>
-                                        <Table.HeaderCell>State</Table.HeaderCell>
                                         <Table.HeaderCell>County</Table.HeaderCell>
+                                        <Table.HeaderCell>State</Table.HeaderCell>
                                         <Table.HeaderCell>Frequency</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
@@ -61,10 +88,10 @@ const Admin = (props) => {
                                                 {el.email}
                                             </Table.Cell>
                                             <Table.Cell>
-                                                {el.state}
+                                                {el.county}
                                             </Table.Cell>
                                             <Table.Cell>
-                                                {el.county}
+                                                {el.state}
                                             </Table.Cell>
                                             <Table.Cell>
                                                 {el.frequency}
@@ -80,21 +107,29 @@ const Admin = (props) => {
                         ? <div className="MainBox" style={{ padding: 30, margin: 'auto'}}>
                             <Form className="InputBox" style={{}}>
                                 <Form.Group widths='equal'>
-                                    <Form.Input fluid label ='First Name' placeholder="First Name" value={selectedUser.first} />
-                                    <Form.Input fluid label ='Last Name' placeholder="Last Name" value={selectedUser.last}/>
+                                    <Form.Input fluid label ='First Name' placeholder="First Name" value={selectedUser.first} 
+                                        onChange={e => setSelectedUser({...selectedUser, first: e.target.value})} />
+                                    <Form.Input fluid label ='Last Name' placeholder="Last Name" value={selectedUser.last}
+                                        onChange={e => setSelectedUser({...selectedUser, last: e.target.value})} />
                                 </Form.Group>
-                                <Form.Input fluid label ='Email' placeholder="Email" value={selectedUser.email} />
+                                <Form.Input fluid label ='Email' placeholder="Email" value={selectedUser.email} 
+                                    onChange={e => setSelectedUser({...selectedUser, email: e.target.value})} />
                                 <Form.Group widths='equal'>
-                                    <Form.Input fluid label ='County' placeholder="County" value={selectedUser.county} />
-                                    <Form.Input fluid label ='State' placeholder="State" value={selectedUser.state} />
-                                    <Form.Input fluid label ='Frequency' placeholder="Frequency" value={selectedUser.frequency} />
+                                    <Form.Input fluid label ='County' placeholder="County" value={selectedUser.county} 
+                                        onChange={e => setSelectedUser({...selectedUser, county: e.target.value})} />
+                                    <Form.Input fluid label ='State' placeholder="State" value={selectedUser.state} 
+                                        onChange={e => setSelectedUser({...selectedUser, state: e.target.value})} />
+                                    <Form.Dropdown fluid label ='Frequency' value={selectedUser.frequency} 
+                                        search selection options={frequencyOptions} onChange={dropdownSelect}/>
                                 </Form.Group>
                                 <Button.Group>
-                                    <Button>Delete</Button>
-                                    <Button.Or />
                                     <Button onClick={() => {
-                                    setOpen(!open);
-                                    }} positive>Save</Button>
+                                        deleteUser()
+                                        }}> Delete </Button>
+                                    <Button.Or />
+                                    <Button type="submit" onClick={() => {
+                                        editUser()}} 
+                                        positive> Save </Button>
                                 </Button.Group> 
                             </Form>
                         </div> : null }

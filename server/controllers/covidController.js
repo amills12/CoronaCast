@@ -1,10 +1,10 @@
 const CovidModel = require("../models/covidModel.js");
-const {linearFitStuff} = require("../statisticalAnalysis/linearFit.js")
+const {linearFitCases} = require("../statisticalAnalysis/linearFit.js")
+const {linearFitDeaths} = require("../statisticalAnalysis/linearFitDeaths.js")
+const {sumCases} = require("../statisticalAnalysis/sumCases.js")
+const {sumDeaths} = require("../statisticalAnalysis/sumDeath.js")
 
 
-//getPrediction()
-//getCasesInRange()
-//getDeathsInRange()
 exports.getAllCounty = async (req, res) => {
     const _state_ = req.params.state;
     const _county_ = req.params.county;
@@ -46,9 +46,16 @@ exports.getPrediction = async (req, res) => {
                 message: err.message || "An unknown error occurred",
             });
                 
-        // console.log(startDate);
-        // console.log(endDate);
-        newData = linearFitStuff(data);
-        res.json(newData);
+
+        //I added functions that run a simple linear fit on the time frame you put the data in for cases and deaths and also 
+        //sums the data for deaths and cases in that time frame. 
+        message = [
+            {"type": "daily new case estimate", "value": linearFitCases(data)},
+            {"type": "daily new death estimate","value": linearFitDeaths(data)},
+            {"type": "cases in range",          "value": sumCases(data)},
+            {"type": "deaths in range",         "value": sumDeaths(data)}
+        ]
+        res.json(message);
     });
-};                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+};     
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

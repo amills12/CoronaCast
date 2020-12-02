@@ -45,7 +45,8 @@
     "request": "^2.88.2",
     "should": "^13.2.3",
     "simple-statistics": "^7.3.2",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "text-file-diff": "^1.1.2"
   },
   "homepage": "https://github.com/amills12/CoronaCast#readme"
 }

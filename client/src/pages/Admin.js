@@ -107,19 +107,19 @@ const Admin = (props) => {
                         ? <div className="MainBox" style={{ padding: 30, margin: 'auto'}}>
                             <Form className="InputBox" style={{}}>
                                 <Form.Group widths='equal'>
-                                    <Form.Input fluid label ='First Name' placeholder="First Name" value={selectedUser.first} 
+                                    <Form.Input fluid label='First Name' placeholder="First Name" value={selectedUser.first} 
                                         onChange={e => setSelectedUser({...selectedUser, first: e.target.value})} />
-                                    <Form.Input fluid label ='Last Name' placeholder="Last Name" value={selectedUser.last}
+                                    <Form.Input fluid label='Last Name' placeholder="Last Name" value={selectedUser.last}
                                         onChange={e => setSelectedUser({...selectedUser, last: e.target.value})} />
                                 </Form.Group>
-                                <Form.Input fluid label ='Email' placeholder="Email" value={selectedUser.email} 
+                                <Form.Input fluid label='Email' placeholder="Email" value={selectedUser.email} 
                                     onChange={e => setSelectedUser({...selectedUser, email: e.target.value})} />
                                 <Form.Group widths='equal'>
-                                    <Form.Input fluid label ='County' placeholder="County" value={selectedUser.county} 
+                                    <Form.Input fluid label='County' placeholder="County" value={selectedUser.county} 
                                         onChange={e => setSelectedUser({...selectedUser, county: e.target.value})} />
-                                    <Form.Input fluid label ='State' placeholder="State" value={selectedUser.state} 
+                                    <Form.Input fluid label='State' placeholder="State" value={selectedUser.state} 
                                         onChange={e => setSelectedUser({...selectedUser, state: e.target.value})} />
-                                    <Form.Dropdown fluid label ='Frequency' value={selectedUser.frequency} 
+                                    <Form.Dropdown fluid label='Frequency' value={selectedUser.frequency} 
                                         search selection options={frequencyOptions} onChange={dropdownSelect}/>
                                 </Form.Group>
                                 <Button.Group>

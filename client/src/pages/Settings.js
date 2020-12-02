@@ -35,6 +35,7 @@ const Settings = (props) => {
     }, [user.name]);
     
     const submitProfileInfo = (e) => {
+        profileInfo.email = user.name;
         if (isNewUser === true) {
             axios.post("/api/userData", profileInfo)
                 .then((response) => {
@@ -60,14 +61,14 @@ const Settings = (props) => {
                 <Grid.Column style={{ maxWidth: 450}}>
                     <Header className="Title" textAlign='center'>CoronaCast</Header>
                     <Header className="Title" style={{ fontSize: 36 }}>Welcome to CoronaCast</Header>
-                    <Header classname="Title" >{isNewUser ? 'Please fill in all information to offically join CoronaCast' : ''}</Header>
+                    <Header classname="Title" >{isNewUser ? 'Please fill in all information to offically join CoronaCast' : 'Email can be changed through login page'}</Header>
                     <div className="MainBox" style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20}}>
                         <Form className="InputBox" onSubmit={submitProfileInfo} style={{ display: 'inline-block'}}>
                             <Form.Group widths='equal'>
                                 <Form.Input fluid label ='First Name' placeholder="First Name" value={profileInfo.first} onChange={e => setProfileInfo({...profileInfo, first: e.target.value})} />
                                 <Form.Input fluid label ='Last Name' placeholder="Last Name" value={profileInfo.last} onChange={e => setProfileInfo({...profileInfo, last: e.target.value})} />
                             </Form.Group>
-                            <Form.Input fluid label ='Email to Receive Reports' placeholder="Email" value={profileInfo.email} onChange={e => setProfileInfo({...profileInfo, email: e.target.value})} />
+                            <Form.Input fluid label ='Email to Receive Reports' placeholder="Email" value={user.name} readonly/>
                             <Form.Input fluid label ='State' placeholder="State" value={profileInfo.state} onChange={e => setProfileInfo({...profileInfo, state: e.target.value})}/>
                             <Form.Input fluid label ='County' placeholder="County" value={profileInfo.county} onChange={e => setProfileInfo({...profileInfo, county: e.target.value})} />
                             <Form.Dropdown  className="InputText" style={{ width: 391, height: 44 }} fluid label = 'Report Frequency'placeholder="I want to receive reports..." value={profileInfo.frequency} 

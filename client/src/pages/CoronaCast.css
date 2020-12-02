@@ -80,3 +80,14 @@ a.HeaderText {
   border-radius: 20px;
   font-family: "Segoe UI";
 }
+
+.ui.container.HeaderContainer {
+  height: 100px;
+}
+
+.ui.header.ReportTitle {
+  color: #414141;
+  font-size: 100px;
+  font-family: "Segoe UI";
+  font-weight: 350;
+}

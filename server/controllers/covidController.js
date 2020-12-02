@@ -23,7 +23,6 @@ exports.getAllCounty = async (req, res) => {
             return res.status(200).send({
                 message: err.message || "An unknown error occurred",
             });
-        json.log(data)
         res.json(data);
     });
 };

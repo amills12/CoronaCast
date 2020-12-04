@@ -1,4 +1,5 @@
 const { sendTestWelcomeEmail, sendTestReportEmail, sendTestConfirmEmail } = require("./functions.mailtrap")
+const { sendWelcomeEmail, sendReportEmail, sendConfirmEmail } = require("./functions.gmail")
 const { MongoClient } = require("mongodb");
 const uri = require("../config/config").db.uri
 

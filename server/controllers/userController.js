@@ -1,5 +1,5 @@
 const User = require("../models/userModel.js");
-const { sendWelcomeEmail, sendReportEmail, sendConfirmEmail } = require("../emails/template.gmail.js")
+const { sendWelcomeEmail, sendReportEmail, sendConfirmEmail } = require("../emails/functions.gmail.js")
 
 // Create a user
 exports.create = async (req, res) => {

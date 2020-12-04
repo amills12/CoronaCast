@@ -10,14 +10,13 @@ const county = "Alachua";
 const state = "Florida";
 const frequency = "monthly";
 
+/*
 sendTestWelcomeEmail(email, firstName);
 sendTestReportEmail(email, county, state, startDate, endDate, frequency);
 sendTestConfirmEmail(email, firstName);
-
+*/
 /*
 sendWelcomeEmail(email, firstName);
-sendReportEmail(email, county, state, startDate, endDate);
+sendReportEmail(email, county, state, startDate, endDate, frequency);
 sendConfirmEmail(email, firstName);
 */
-
-

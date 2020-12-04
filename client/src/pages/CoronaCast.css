@@ -81,13 +81,16 @@ a.HeaderText {
   font-family: "Segoe UI";
 }
 
-.ui.container.HeaderContainer {
-  height: 100px;
-}
-
 .ui.header.ReportTitle {
   color: #414141;
   font-size: 100px;
   font-family: "Segoe UI";
   font-weight: 350;
+}
+
+.StatsParagraph {
+  font-family: "Segoe UI";
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 20px;
 }

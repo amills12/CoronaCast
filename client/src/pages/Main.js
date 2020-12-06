@@ -79,7 +79,7 @@ const Main = (props) => {
         <Grid.Row style={{ height: '60%' }} centered>
           {validData ?
             <div className="MainBox" style={{ padding: 40, maxWidth: '900px' }}>
-              <Header>Statistics for {dataParams.county} County, {dataParams.state} from {dataParams.startDate} to {dataParams.endDate}</Header>
+              <Header>Statistics for {dataParams.county} County, {dataParams.state} from {ConvertDate(dataParams.startDate)} to {ConvertDate(dataParams.endDate)}</Header>
               <div style={{ width: 800, height: 300, overflowY: 'scroll' }}>
                 <Table style={{ verticalAlign: 'middle' }} celled striped selectable>
                   <Table.Header>
@@ -93,7 +93,7 @@ const Main = (props) => {
                     {covidData.map(el => (
                       <Table.Row>
                         <Table.Cell>
-                          {el.date.substr(0, 10)}
+                          {ConvertDate(el.date.substr(0, 10))}
                         </Table.Cell>
                         <Table.Cell>
                           {el.cases}
@@ -110,7 +110,8 @@ const Main = (props) => {
                 Based on the data from <b>{ConvertDate(dataParams.startDate)}</b> to <b>{ConvertDate(dataParams.endDate)}</b> in <b>{dataParams.county}</b>, <b>{dataParams.state + " "}</b>
               our linear fit model predicts there will be an increase in daily new cases by <b>{Math.ceil(covidStats[0].value)}</b> with an increase in deaths by <b>{Math.ceil(covidStats[1].value)}</b>.
               <br></br>
-              From <b>{dataParams.startDate}</b> to <b>{dataParams.endDate}</b> there was a total of <b>{covidStats[2].value}</b> Cases and <b>{covidStats[3].value}</b> Deaths.
+              <br></br>
+              From <b>{ConvertDate(dataParams.startDate)}</b> to <b>{ConvertDate(dataParams.endDate)}</b> there was a total of <b>{covidStats[2].value}</b> Cases and <b>{covidStats[3].value}</b> Deaths.
             </p>
             </div>
             :

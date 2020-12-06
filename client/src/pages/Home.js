@@ -10,7 +10,6 @@ import axios from 'axios'
 import './CoronaCast.css';
 
 const Home = (props) => {
-
   const { isAuthenticated, isLoading, user } = useAuth0();
   const [isUser, setUser] = useState(true);
   const [isAdmin, setAdmin] = useState(false);

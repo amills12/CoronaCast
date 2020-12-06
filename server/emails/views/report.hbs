@@ -31,8 +31,11 @@
           <tr>
             <td
               style="background-color: white; padding: 20px 30px 20px 30px; text-align: center; font-family: sans-serif; font-size: 20px; mso-height-rule: exactly; line-height: 25px; color: #555555;">
-              {{stats content}} <br>
+              {{stats content}} <b>{{new_cases content}}</b> new cases and <b>{{new_deaths content}}</b> new deaths associated with COVID-19 from<br>
               <b>{{format_date startDate}}</b> to <b>{{format_date endDate}}</b>.
+              </br>
+              </br>
+              Our linear fit model predicts there will be an increase in daily new cases by <b>{{linear_fit content}}</b> with an increase in daily new deaths by <b>{{linear_fit_deaths content}}</b>. 
             </td>
           </tr>
           <tr>

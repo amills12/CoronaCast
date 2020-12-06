@@ -1,5 +1,5 @@
 const User = require("../models/userModel.js");
-const { sendWelcomeEmail, sendReportEmail, sendConfirmEmail } = require("../emails/functions.gmail.js")
+const { sendWelcomeEmail, sendConfirmEmail, sendReportEmail, sendReport } = require("../emails/functions.gmail.js")
 
 // Create a user
 exports.create = async (req, res) => {
@@ -14,6 +14,7 @@ exports.create = async (req, res) => {
   await new User(userData).save()
     .then((data) => {
       sendWelcomeEmail(data.email, data.first);
+      sendReportEmail(data.email, data.county, data.state, '2020-10-24', data.frequency);
       res.json(data);
     })
     .catch((err) => {
@@ -58,18 +59,18 @@ exports.getByEmail = async (req, res) => {
 };
 
 //deletes user by email
-exports.deleteByEmail = async(req, res) => {
+exports.deleteByEmail = async (req, res) => {
   let em = req.params.email;
 
-  await User.deleteOne({email : em}, (err, data) => {
-    
+  await User.deleteOne({ email: em }, (err, data) => {
+
     if (err)
       return res.status(200).send({
         message: err.message || "An unknown error occurred"
       });
-      res.send({
-        message: em + " has been deleted successfully",
-      });
+    res.send({
+      message: em + " has been deleted successfully",
+    });
   })
 
 };
@@ -78,7 +79,7 @@ exports.update = async (req, res) => {
   const userData = req.body;
   const em = req.params.email;
 
-  await User.findOne({email : em}, (err, data) => {
+  await User.findOne({ email: em }, (err, data) => {
     data.email = userData.email;
     data.state = userData.state;
     data.county = userData.county;
@@ -91,6 +92,7 @@ exports.update = async (req, res) => {
         return res.status(200).send({
           message: err.message || "An unknown error occurred"
         });
+      sendConfirmEmail(data.email, data.first);
       res.json(data);
     })
   })

@@ -16,7 +16,7 @@ exports.getAllCounty = async (req, res) => {
         county: _county_,
         date: {
             $gte: new Date(startDate),
-            $lt: new Date(endDate)
+            $lte: new Date(endDate)
         }
         }, (err, data) => {
         if (err)
@@ -38,7 +38,7 @@ exports.getPrediction = async (req, res) => {
         county: _county_,
         date: {
             $gte: new Date(startDate),
-            $lt: new Date(endDate)
+            $lte: new Date(endDate)
         }
         }, (err, data) => {
         if (err)

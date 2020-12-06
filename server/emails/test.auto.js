@@ -29,7 +29,7 @@ async function run() {
         if ((await cursor.count()) === 0) {
             console.log("No documents found!");
         }
-        
+
         //await cursor.forEach(doc => sendTestWelcomeEmail(doc.email, doc.first));
 
         //await cursor.rewind();
@@ -39,23 +39,27 @@ async function run() {
             const endDate = new Date('10/24/2020');
             const startDate = new Date('10/24/2020');
 
-            if (doc.frequency == 'weekly') {
-                startDate.setTime(startDate.getTime() - 6*DAY);
-            }
-            else if (doc.frequency == 'monthly') {
-                startDate.setTime(startDate.getTime() - 30*DAY);
-            }
-            else if (doc.frequency == 'bi-monthly') {
-                startDate.setTime(startDate.getTime() - 15*DAY);
-            }
-            else if (doc.frequency == 'daily') {
-                startDate.setTime(startDate.getTime() - DAY);
-            }
-            else {
-                // nothing
+            switch (doc.frequency) {
+                case 'daily':
+                    startDate.setTime(startDate.getTime() - DAY);
+                    sendTestReportEmail(doc.email, doc.county, doc.state, startDate, endDate, doc.frequency);
+                    break;
+                case 'weekly':
+                    startDate.setTime(startDate.getTime() - 6 * DAY);
+                    sendTestReportEmail(doc.email, doc.county, doc.state, startDate, endDate, doc.frequency);
+                    break;
+                case 'bi-monthly':
+                    startDate.setTime(startDate.getTime() - 14 * DAY);
+                    sendTestReportEmail(doc.email, doc.county, doc.state, startDate, endDate, doc.frequency);
+                    break;
+                case 'monthly':
+                    startDate.setTime(startDate.getTime() - 30 * DAY);
+                    sendTestReportEmail(doc.email, doc.county, doc.state, startDate, endDate, doc.frequency);
+                    break;
+                case 'never':
+                    break;
             }
 
-            sendTestReportEmail(doc.email, doc.county, doc.state, startDate, endDate, doc.frequency)
         })
 
         //await cursor.rewind();

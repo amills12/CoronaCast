@@ -3,6 +3,8 @@ const gmail = new GmailService();
 const { MongoClient } = require("mongodb");
 const uri = require("../config/config").db.uri
 
+const DAY = 86400000;
+
 exports.sendWelcomeEmail = (email, firstName) => {
 
   const mailInfo = {
@@ -21,20 +23,36 @@ exports.sendWelcomeEmail = (email, firstName) => {
   gmail.sendMail(mailInfo);
 };
 
-exports.sendReportEmail = async (email, county, state, startDate, endDate, frequency) => {
+exports.sendReportEmail = async (email, county, state, endDate, frequency) => {
 
   const info = []
-  const sDate = new Date(startDate);
+  const sDate = new Date(endDate);
   const eDate = new Date(endDate);
-  sDate.setHours(-4);
-  eDate.setHours(-4);
 
+  switch (frequency) {
+    case 'daily':
+      sDate.setTime(sDate.getTime() - DAY);
+      break;
+    case 'weekly':
+      console.log(2)
+      sDate.setTime(sDate.getTime() - 6 * DAY);
+      console.log(4)
+      break;
+    case 'bi-monthly':
+      sDate.setTime(sDate.getTime() - 14 * DAY);
+      break;
+    case 'monthly':
+      sDate.setTime(sDate.getTime() - 30 * DAY);
+      break;
+    case 'never':
+      break;
+  }
+  
   const client = new MongoClient(uri);
 
   try {
-
     await client.connect();
-
+    console.log(7)
     const database = client.db("CoronaCastdb");
     const collection = database.collection("covidmodels");
 

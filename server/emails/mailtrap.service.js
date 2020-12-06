@@ -1,9 +1,11 @@
 const nodemailer = require("nodemailer");
 const Handlebars = require('handlebars')
 const hbs = require("nodemailer-express-handlebars");
+const { linearFitCases } = require('../statisticalAnalysis/linearFit')
+const { linearFitDeaths } = require('../statisticalAnalysis/linearFitDeaths')
 
 function formatDate(date) {
-  date.setHours(24);
+  //date.setHours(24);
   year = date.getFullYear();
   month = date.getMonth() + 1;
   dt = date.getDate();
@@ -16,7 +18,7 @@ function formatDate(date) {
   }
 
   new_date = month + '/' + dt + '/' + year;
-  date.setHours(-4);
+  //date.setHours(-4);
   return new_date;
 }
 
@@ -24,12 +26,25 @@ Handlebars.registerHelper('format_date', function (data) {
   return formatDate(data);
 });
 
+Handlebars.registerHelper('linear_fit', function (data) {
+  return Math.ceil(linearFitCases(data));
+});
+
+Handlebars.registerHelper('linear_fit_deaths', function (data) {
+  return Math.ceil(linearFitDeaths(data));
+});
+
 Handlebars.registerHelper('stats', function (data) {
-  const newCases = (data[data.length - 1].cases) - (data[0].cases);
-  const newDeaths = (data[data.length - 1].deaths) - (data[0].deaths);
-  var output = "In " + data[0].county + " County, " + data[0].state + ", there have been "
-    + newCases + " new cases and " + newDeaths + " new deaths associated with COVID-19 from "
+  var output = "In " + data[0].county + " County, " + data[0].state + ", there have been ";
   return output;
+});
+
+Handlebars.registerHelper('new_cases', function (data) {
+  return (data[data.length - 1].cases) - (data[0].cases);
+});
+
+Handlebars.registerHelper('new_deaths', function (data) {
+  return (data[data.length - 1].deaths) - (data[0].deaths);
 });
 
 class MailService {

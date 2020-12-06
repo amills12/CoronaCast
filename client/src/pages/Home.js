@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React, { useEffect, useState } from 'react';
-import { Header, Grid, Divider, Input, Button } from 'semantic-ui-react';
+import { Header, Grid, Divider, Button } from 'semantic-ui-react';
 import Loading from '../components/Loading';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
@@ -29,7 +29,7 @@ useEffect(() => {
   if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
     setAdmin(true);
   }}
-}, [checked, isAuthenticated, user]); 
+}, [isAuthenticated, checked, user]); 
 
   if (isLoading) return <Loading/>
 
@@ -48,8 +48,7 @@ useEffect(() => {
             <Button href='/admin' className="AuthButton">Admin Panel</Button>
           : null}
             <Divider style={{marginTop: 30}}></Divider>
-            <Header className="InsideText" as="h2">CoronaCast Using Zip Code</Header>
-            <Input className="InputText" style={{ width: 360, height: 60 }} placeholder='Coming In Sprint 3'/>
+            <Header className="InsideText"><a href='/main'>CoronaCast Web Page Report</a></Header>
           </div>
         </Grid.Column>
       </Grid>

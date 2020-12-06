@@ -16,7 +16,7 @@ export default function Routes() {
           <Route path="/" exact component={Home} />
           <PrivateRoute path="/Settings" component={Settings} />
           <PrivateRoute path="/Admin" component={Admin}/>
-          <PrivateRoute path="/Main" component={Main} />
+          <Route path="/Main" component={Main} />
           <Route component={Home} />
         </Switch>
       </BrowserRouter>

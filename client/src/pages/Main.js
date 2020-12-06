@@ -59,10 +59,10 @@ const Main = (props) => {
         </Grid.Row>
         <Grid.Row style={{height: '60%'}} centered>       
         { validData ? 
-          <div className="MainBox" style={{ padding: 40}}>
+          <div className="MainBox" style={{ padding: 40, maxWidth: '900px' }}>
             <Header>Statistics for {dataParams.county} County, {dataParams.state} from {dataParams.startDate} to {dataParams.endDate}</Header>
             <div style={{ width: 800, height: 300, overflowY: 'scroll' }}>
-            <Table celled striped selectable>
+            <Table style={{verticalAlign: 'middle'}}celled striped selectable>
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Date</Table.HeaderCell>
@@ -92,7 +92,7 @@ const Main = (props) => {
             From {dataParams.startDate} to {dataParams.endDate} there was a total of <b>{covidStats[2].value.toFixed(0)}</b> Cases and <b>{covidStats[3].value.toFixed(0)}</b> Deaths.</p>
           </div>            
         : 
-          <div className="MainBox" style={{padding: 20}}>
+          <div className="MainBox" style={{padding: 20 }}>
             {dataNotFound ? <p>Covid data not found, please check form information</p> : null}
             <Form className="InputBox" onSubmit={GetCovidData}>
               <Form.Input fluid label='State' placeholder="State" onChange={e => setDataParams({...dataParams, state: e.target.value})}/>

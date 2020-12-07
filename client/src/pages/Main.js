@@ -78,7 +78,7 @@ const Main = (props) => {
         </Grid.Row>
         <Grid.Row style={{ height: '60%' }} centered>
           {validData ?
-            <div className="MainBox" style={{ padding: 40, maxWidth: '900px' }}>
+            <div className="MainBox" style={{ padding: 40, maxWidth: '900px', paddingBottom: 60 }}>
               <Header>Statistics for {dataParams.county} County, {dataParams.state} from {ConvertDate(dataParams.startDate)} to {ConvertDate(dataParams.endDate)}</Header>
               <div style={{ width: 800, height: 300, overflowY: 'scroll' }}>
                 <Table style={{ verticalAlign: 'middle' }} celled striped selectable>

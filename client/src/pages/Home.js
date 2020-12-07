@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React, { useEffect, useState } from 'react';
 import { Header, Grid, Divider, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import Loading from '../components/Loading';
 import LoginButton from '../components/LoginButton';
 import LogOutButton from '../components/LogOutButton';
@@ -11,9 +12,9 @@ import './CoronaCast.css';
 
 const Home = (props) => {
   const { isAuthenticated, isLoading, user } = useAuth0();
-  const [isUser, setUser] = useState(true);
   const [isAdmin, setAdmin] = useState(false);
   const [checked, setChecked] = useState(false);
+  const history = useHistory();
   
 useEffect(() => {
   if (isAuthenticated && checked === false) {
@@ -21,14 +22,17 @@ useEffect(() => {
         .then(res => {
             if (res.data != null) {
               console.log(res.data);
-              setUser(true);}
-            else {setUser(false);}})
+            } else {
+              let path = '/settings';
+              history.push(path);
+            }})
         .catch(err => console.log(err));
     setChecked(true);
   if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
     setAdmin(true);
-  }}
-}, [isAuthenticated, checked, user]); 
+  }
+  }
+}, [isAuthenticated, checked, user, history]); 
 
   if (isLoading) return <Loading/>
 
@@ -37,7 +41,6 @@ useEffect(() => {
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header className="Title"> CoronaCast </Header>
-          <Header classname="Title">{isUser ? null : "We don't seem to have you as a member of CoronaCast, please select User Settings"}</Header>
           <div className="MainBox" style={{ paddingBottom: 40 }}>
             {!isAuthenticated && (<LoginButton />)}
             {!isAuthenticated && (<SignUpButton />)}

@@ -32,7 +32,7 @@ useEffect(() => {
     setAdmin(true);
   }
   }
-}, [isAuthenticated, checked, user]); 
+}, [isAuthenticated, checked, user, history]); 
 
   if (isLoading) return <Loading/>
 

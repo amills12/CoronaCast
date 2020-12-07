@@ -46,6 +46,10 @@ exports.getPrediction = async (req, res) => {
                 message: err.message || "An unknown error occurred",
             });
                 
+        if(data.length == 0)
+            return res.status(200).send({
+                message: "There is no data in this range"
+            });
 
         //I added functions that run a simple linear fit on the time frame you put the data in for cases and deaths and also 
         //sums the data for deaths and cases in that time frame. 

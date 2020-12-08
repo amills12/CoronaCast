@@ -2,13 +2,14 @@ const GmailService = require('./gmail.service');
 const gmail = new GmailService();
 const { MongoClient } = require("mongodb");
 const uri = require("../config/config").db.uri
+const gmail_user = require("../config/config").gmail.user
 
 const DAY = 86400000;
 
 exports.sendWelcomeEmail = (email, firstName) => {
 
   const mailInfo = {
-    from: "coronacast.dev@gmail.com",
+    from: gmail_user,
     to: email,
     subject: "A Welcome Email Appears...",
     template: "welcome",
@@ -84,7 +85,7 @@ exports.sendReportEmail = async (email, county, state, endDate, frequency) => {
     await client.close();
 
     let mailInfo = {
-      from: "coronacast.dev@gmail.com",
+      from: gmail_user,
       to: email,
       subject: "Your CoronaCast Report is here!",
       template: "report",
@@ -105,7 +106,7 @@ exports.sendReportEmail = async (email, county, state, endDate, frequency) => {
 exports.sendConfirmEmail = (email, firstName) => {
 
   let mailInfo = {
-    from: "coronacast.dev@gmail.com",
+    from: gmail_user,
     to: email,
     subject: "Your CoronaCast Settings have changed.",
     template: "confirm",

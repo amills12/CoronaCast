@@ -3,6 +3,8 @@ const mailService = new MailService();
 const { MongoClient } = require("mongodb");
 const uri = require("../config/config").db.uri;
 
+const DAY = 86400000;
+
 exports.sendTestWelcomeEmail = (email, firstName) => {
 
   let mailInfo = {
@@ -21,20 +23,33 @@ exports.sendTestWelcomeEmail = (email, firstName) => {
   mailService.sendMail(mailInfo);
 }
 
-exports.sendTestReportEmail = async (email, county, state, startDate, endDate, frequency) => {
+exports.sendTestReportEmail = async (email, county, state, endDate, frequency) => {
 
   const info = []
-  const sDate = new Date(startDate);
+  const sDate = new Date(endDate);
   const eDate = new Date(endDate);
-  console.log(sDate);
-  console.log(eDate);
 
+  switch (frequency) {
+    case 'daily':
+      sDate.setTime(sDate.getTime() - DAY);
+      break;
+    case 'weekly':
+      sDate.setTime(sDate.getTime() - 6 * DAY);
+      break;
+    case 'bi-monthly':
+      sDate.setTime(sDate.getTime() - 14 * DAY);
+      break;
+    case 'monthly':
+      sDate.setTime(sDate.getTime() - 30 * DAY);
+      break;
+    case 'never':
+      break;
+  }
+  
   const client = new MongoClient(uri);
 
   try {
-
     await client.connect();
-
     const database = client.db("CoronaCastdb");
     const collection = database.collection("covidmodels");
 
@@ -69,7 +84,7 @@ exports.sendTestReportEmail = async (email, county, state, startDate, endDate, f
     await client.close();
 
     let mailInfo = {
-      from: "backend@coronacast.dev",
+      from: "coronacast.dev@gmail.com",
       to: email,
       subject: "Your CoronaCast Report is here!",
       template: "report",

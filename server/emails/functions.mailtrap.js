@@ -34,9 +34,7 @@ exports.sendTestReportEmail = async (email, county, state, endDate, frequency) =
       sDate.setTime(sDate.getTime() - DAY);
       break;
     case 'weekly':
-      console.log(2)
       sDate.setTime(sDate.getTime() - 6 * DAY);
-      console.log(4)
       break;
     case 'bi-monthly':
       sDate.setTime(sDate.getTime() - 14 * DAY);
@@ -52,7 +50,6 @@ exports.sendTestReportEmail = async (email, county, state, endDate, frequency) =
 
   try {
     await client.connect();
-    console.log(7)
     const database = client.db("CoronaCastdb");
     const collection = database.collection("covidmodels");
 

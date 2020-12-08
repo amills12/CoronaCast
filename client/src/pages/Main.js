@@ -63,9 +63,9 @@ const Main = (props) => {
       axios.all([requestData, requestStats])
         .then(axios.spread((...res) => {
           if (res[0].data.message == null && res[0].data.length !== 0 && res[1].data.message == null) {
-            console.log(res[0].data);
+            //console.log(res[0].data);
             setCovidData(res[0].data);
-            console.log(res[1].data);
+            //console.log(res[1].data);
             setCovidStats(res[1].data);
             setValidData(true);
           } else {

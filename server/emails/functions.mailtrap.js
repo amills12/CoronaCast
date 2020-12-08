@@ -26,8 +26,8 @@ exports.sendTestReportEmail = async (email, county, state, startDate, endDate, f
   const info = []
   const sDate = new Date(startDate);
   const eDate = new Date(endDate);
-  console.log(sDate);
-  console.log(eDate);
+  //console.log(sDate);
+  //console.log(eDate);
 
   const client = new MongoClient(uri);
 

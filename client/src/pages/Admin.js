@@ -46,7 +46,6 @@ const Admin = (props) => {
         axios.delete("/api/userData/" + selectedUser.email)
             .then(res => {
                 //console.log(res);
-                setSelectedUser(null);
                 setOpen(false);
             })
             .catch(err => console.log(err));

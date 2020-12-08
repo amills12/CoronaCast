@@ -1,17 +1,5 @@
-##_**DISCLAIMER**_
-This project has moved maintainers and is no longer developed here. The up to date template can be found [here](https://github.com/rennemannd/MERN-Template).
-
-#### _**IMPORTANT NOTE**_ - 
-This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
-- local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
-- production: Since the config file is not pushed when you deploy your app, you must specifiy your db uri in heorku. Set the uri in heroku as specified in [this](https://devcenter.heroku.com/articles/config-vars) resource. Make sure you name the environement variable "DB_URI".
-
-## Getting Started
-This repository aims to assist you in beginning work on a MERN stack application with a solid file structure as a foundation. To get started make a copy of this template repo for your project teams.
-
-Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root. After this you will run `npm run-script install-all` from the root. From now on run this command anytime you want to install all modules again. This is a script we have defined in package.json .
-
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
+## Disclaimer
+This project was made with a base MERN template provided by the class, Intro to Software Engineering (cen3031) at the University of Florida
 
 ## File structure
 #### `client` - Holds the client application
@@ -77,3 +65,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## CoronaCast
+CoronaCast is a web application for seeing daily case and death statistics along with a statistical analysis for any county in the United States. CoronaCast uses various apis on both the client and server sides of the application to handle requests, the database, and storage of user credentials. The application features an easy-to-use interface for signing up, changing settings, as well as accessing web-page reports. Users can further opt-in and opt-out of receiving emails of CoronaCast statistics for the county of their choice. The application also features an admin page for developers to view CoronaCast users, edit their saved user information, and remove users.

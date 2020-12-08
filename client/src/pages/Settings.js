@@ -40,17 +40,22 @@ const Settings = (props) => {
             axios.post("/api/userData", profileInfo)
                 .then((response) => {
                     console.log(response);
+                    let path = '';
+                    history.push(path);
                 }, (error) => {
                     console.log(error);
                 });
         } else {
             axios.put("/api/userData/" + user.name, profileInfo)
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    let path = '';
+                     history.push(path);
+                })
                 .catch(err => console.log(err));
         }
 
-        let path = '';
-        history.push(path);
+        
 
         console.log(profileInfo); 
     }

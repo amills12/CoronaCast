@@ -10,6 +10,7 @@ const Main = (props) => {
   const [dataParams, setDataParams] = useState([]);
   const [validData, setValidData] = useState(false);
   const [dataNotFound, setDataNotFound] = useState(false);
+  const [dataEmpty, setDataEmpty] = useState(false);
 
   const ConvertDate = (data) => {
     let oldDate = new Date(data + "T00:00:00");
@@ -29,29 +30,39 @@ const Main = (props) => {
   };
 
   const GetCovidData = (e) => {
-    let data = "/api/covidData/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
-    let stats = "/api/covidStats/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
 
-    const requestData = axios.get(data);
-    const requestStats = axios.get(stats);
+    if (dataParams.state == null || dataParams.county == null || dataParams.startDate == null || dataParams.endDate == null ||
+        dataParams.state === "" || dataParams.county === "" || dataParams.startDate === "" || dataParams.endDate === "") {
+      setValidData(false);
+      setDataEmpty(true);
+      setDataNotFound(false);
+    } else {
+      setDataEmpty(false);
 
-    axios.all([requestData, requestStats])
-      .then(axios.spread((...res) => {
-        if (res[0].data.message == null && res[0].data.length !== 0 && res[1].data.message == null) {
-          console.log(res[0].data);
-          setCovidData(res[0].data);
-          console.log(res[1].data);
-          setCovidStats(res[1].data);
-          setValidData(true);
-        } else {
-          setValidData(false);
-          setDataNotFound(true);
-        }
-      }))
-      .catch(err => {
-        console.log(err[0]);
-        console.log(err[1]);
-      });
+      let data = "/api/covidData/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
+      let stats = "/api/covidStats/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
+
+      const requestData = axios.get(data);
+      const requestStats = axios.get(stats);
+
+      axios.all([requestData, requestStats])
+        .then(axios.spread((...res) => {
+          if (res[0].data.message == null && res[0].data.length !== 0 && res[1].data.message == null) {
+            console.log(res[0].data);
+            setCovidData(res[0].data);
+            console.log(res[1].data);
+            setCovidStats(res[1].data);
+            setValidData(true);
+          } else {
+            setValidData(false);
+            setDataNotFound(true);
+          }
+        }))
+        .catch(err => {
+          console.log(err[0]);
+          console.log(err[1]);
+        });
+    }
   }
 
   return (
@@ -117,6 +128,7 @@ const Main = (props) => {
             :
             <div className="MainBox" style={{ padding: 20 }}>
               {dataNotFound ? <p>Covid data not found, please check form information</p> : null}
+              {dataEmpty ? <p>Please fill in all of the boxes</p> : null}
               <Form className="InputBox" onSubmit={GetCovidData}>
                 <Form.Input fluid label='State' placeholder="State" onChange={e => setDataParams({ ...dataParams, state: e.target.value })} />
                 <Form.Input fluid label='County' placeholder="County" onChange={e => setDataParams({ ...dataParams, county: e.target.value })} />

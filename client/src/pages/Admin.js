@@ -34,20 +34,25 @@ const Admin = (props) => {
     };
 
     const editUser = () => {
-        setOpen(false);
         axios.put("/api/userData/" + selectedUser.email, selectedUser)
-            .then(res => {console.log(res)})
+            .then(res => {
+                console.log(res);
+                setOpen(false);})
             .catch(err => console.log(err));
+            
+            
 
     }
 
     const deleteUser = () => {
-        setOpen(false);
+        
         axios.delete("/api/userData/" + selectedUser.email)
             .then(res => {
                 console.log(res);
-                setSelectedUser(null);})
+                setSelectedUser(null);
+                setOpen(false);})
             .catch(err => console.log(err));
+            
 
     }
     
@@ -123,7 +128,7 @@ const Admin = (props) => {
                                 <Form.Dropdown fluid label='Frequency' value={selectedUser.frequency} 
                                         search selection options={frequencyOptions} onChange={dropdownSelect}/>
                                 <Button.Group>
-                                    <Button onClick={() => {
+                                    <Button type="button" onClick={() => {
                                         deleteUser()
                                         }}
                                         negative> Delete </Button>

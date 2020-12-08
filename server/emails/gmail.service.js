@@ -3,6 +3,7 @@ const Handlebars = require('handlebars')
 const hbs = require("nodemailer-express-handlebars");
 const { linearFitCases } = require('../statisticalAnalysis/linearFit')
 const { linearFitDeaths } = require('../statisticalAnalysis/linearFitDeaths')
+const gmail = require("../config/config").gmail
 
 function formatDate(date) {
   date.setHours(24);
@@ -56,7 +57,7 @@ class GmailService {
         extname: ".hbs"
       },
       extName: ".hbs",
-      viewPath: "server/emails/views"
+      viewPath: "views"
     };
 
     this._transporter = nodemailer.createTransport({
@@ -64,8 +65,8 @@ class GmailService {
       port: 465,
       secure: true, // use SSL
       auth: {
-        user: "coronacast.dev@gmail.com",
-        pass: "RuntimeTerrorFall2020"
+        user: gmail.user,
+        pass: gmail.pass
       }
     });
 

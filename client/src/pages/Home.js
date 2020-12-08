@@ -15,26 +15,27 @@ const Home = (props) => {
   const [isAdmin, setAdmin] = useState(false);
   const [checked, setChecked] = useState(false);
   const history = useHistory();
-  
-useEffect(() => {
-  if (isAuthenticated && checked === false) {
-    axios.get("/api/userData/" + user.name)
-        .then(res => {
-            if (res.data != null) {
-              console.log(res.data);
-            } else {
-              let path = '/settings';
-              history.push(path);
-            }})
-        .catch(err => console.log(err));
-    setChecked(true);
-  if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
-    setAdmin(true);
-  }
-  }
-}, [isAuthenticated, checked, user, history]); 
 
-  if (isLoading) return <Loading/>
+  useEffect(() => {
+    if (isAuthenticated && checked === false) {
+      axios.get("/api/userData/" + user.name)
+        .then(res => {
+          if (res.data != null) {
+            //console.log(res.data);
+          } else {
+            let path = '/settings';
+            history.push(path);
+          }
+        })
+        .catch(err => console.log(err));
+      setChecked(true);
+      if (user.name === "alexandermills@ufl.edu" || user.name === "coronacast.dev@gmail.com" || user.name === "antonlivingston@ufl.edu") {
+        setAdmin(true);
+      }
+    }
+  }, [isAuthenticated, checked, user, history]);
+
+  if (isLoading) return <Loading />
 
   return (
     <html>
@@ -46,10 +47,10 @@ useEffect(() => {
             {!isAuthenticated && (<SignUpButton />)}
             {isAuthenticated && (<LogOutButton />)}
             {isAuthenticated && (<UserSettingsButton />)}
-            {isAdmin ? 
-            <Button href='/admin' className="AuthButton">Admin Panel</Button>
-          : null}
-            <Divider style={{marginTop: 30}}></Divider>
+            {isAdmin ?
+              <Button href='/admin' className="AuthButton">Admin Panel</Button>
+              : null}
+            <Divider style={{ marginTop: 30 }}></Divider>
             <Header className="InsideText"><a href='/main'>CoronaCast Web Page Report</a></Header>
           </div>
         </Grid.Column>

@@ -8,7 +8,7 @@ const DAY = 86400000;
 exports.sendTestWelcomeEmail = (email, firstName) => {
 
   let mailInfo = {
-    from: "backend@coronacast.dev",
+    from: "developer@coronacast.com",
     to: email,
     subject: "Welcome to CoronaCast!",
     template: "welcome",
@@ -84,7 +84,7 @@ exports.sendTestReportEmail = async (email, county, state, endDate, frequency) =
     await client.close();
 
     let mailInfo = {
-      from: "coronacast.dev@gmail.com",
+      from: "developer@coronacast.com",
       to: email,
       subject: "Your CoronaCast Report is here!",
       template: "report",
@@ -105,7 +105,7 @@ exports.sendTestReportEmail = async (email, county, state, endDate, frequency) =
 exports.sendTestConfirmEmail = (email, firstName) => {
 
   let mailInfo = {
-    from: "backend@coronacast.dev",
+    from: "developer@coronacast.com",
     to: email,
     subject: "Your CoronaCast Settings have changed.",
     template: "confirm",

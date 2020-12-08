@@ -3,6 +3,7 @@ const Handlebars = require('handlebars')
 const hbs = require("nodemailer-express-handlebars");
 const { linearFitCases } = require('../statisticalAnalysis/linearFit')
 const { linearFitDeaths } = require('../statisticalAnalysis/linearFitDeaths')
+const mailtrap = require("../config/config").mailtrap
 
 function formatDate(date) {
   //date.setHours(24);
@@ -63,8 +64,8 @@ class MailService {
       host: "smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: "9c9fdf870787f6",
-        pass: "583895d2c35a5b"
+        user: mailtrap.user,
+        pass: mailtrap.pass
       },
       pool: true,         // use pooled connection
       rateLimit: true,    // enable to make sure we are limiting
@@ -77,7 +78,7 @@ class MailService {
   sendMail({ to, subject, template, context, attachments }) {
     return this._transporter.sendMail({
       to,
-      from: "backend@coronacast.dev",
+      from: "developer@coronacast.com",
       subject,
       template,
       context,

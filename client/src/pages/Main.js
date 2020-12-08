@@ -10,6 +10,7 @@ const Main = (props) => {
   const [dataParams, setDataParams] = useState([]);
   const [validData, setValidData] = useState(false);
   const [dataNotFound, setDataNotFound] = useState(false);
+  const [dataEmpty, setDataEmpty] = useState(false);
 
   const ConvertDate = (data) => {
     let oldDate = new Date(data + "T00:00:00");
@@ -28,30 +29,55 @@ const Main = (props) => {
     return new_date;
   };
 
+  const ConvertInputDate = (data) => {
+    //Converts Inputs from MM/DD/YYYY to YYYY-MM-DD
+    let values = data.split('/')
+
+    //Padding with zeros if needed
+    if (values[0] != null && values[0].length < 2) {
+      values[0] = '0' + values[0];
+    }
+    if (values[1] != null && values[1].length < 2) {
+      values[1] = '0' + values[1];
+    }
+
+    return values[2] + '-' + values[0] + '-' + values[1];
+  }
+
   const GetCovidData = (e) => {
-    let data = "/api/covidData/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
-    let stats = "/api/covidStats/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
 
-    const requestData = axios.get(data);
-    const requestStats = axios.get(stats);
+    if (dataParams.state == null || dataParams.county == null || dataParams.startDate == null || dataParams.endDate == null ||
+      dataParams.state === "" || dataParams.county === "" || dataParams.startDate === "" || dataParams.endDate === "") {
+      setValidData(false);
+      setDataEmpty(true);
+      setDataNotFound(false);
+    } else {
+      setDataEmpty(false);
 
-    axios.all([requestData, requestStats])
-      .then(axios.spread((...res) => {
-        if (res[0].data.message == null && res[0].data.length !== 0 && res[1].data.message == null) {
-          console.log(res[0].data);
-          setCovidData(res[0].data);
-          console.log(res[1].data);
-          setCovidStats(res[1].data);
-          setValidData(true);
-        } else {
-          setValidData(false);
-          setDataNotFound(true);
-        }
-      }))
-      .catch(err => {
-        console.log(err[0]);
-        console.log(err[1]);
-      });
+      let data = "/api/covidData/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
+      let stats = "/api/covidStats/" + dataParams.state + "&" + dataParams.county + "&" + dataParams.startDate + "&" + dataParams.endDate;
+
+      const requestData = axios.get(data);
+      const requestStats = axios.get(stats);
+
+      axios.all([requestData, requestStats])
+        .then(axios.spread((...res) => {
+          if (res[0].data.message == null && res[0].data.length !== 0 && res[1].data.message == null) {
+            //console.log(res[0].data);
+            setCovidData(res[0].data);
+            //console.log(res[1].data);
+            setCovidStats(res[1].data);
+            setValidData(true);
+          } else {
+            setValidData(false);
+            setDataNotFound(true);
+          }
+        }))
+        .catch(err => {
+          console.log(err[0]);
+          console.log(err[1]);
+        });
+    }
   }
 
   return (
@@ -110,18 +136,19 @@ const Main = (props) => {
                 Based on the data from <b>{ConvertDate(dataParams.startDate)}</b> to <b>{ConvertDate(dataParams.endDate)}</b> in <b>{dataParams.county}</b>, <b>{dataParams.state + " "}</b>
               our linear fit model predicts there will be an increase in daily new cases by <b>{Math.ceil(covidStats[0].value)}</b> with an increase in deaths by <b>{Math.ceil(covidStats[1].value)}</b>.
               <br></br>
-              <br></br>
+                <br></br>
               From <b>{ConvertDate(dataParams.startDate)}</b> to <b>{ConvertDate(dataParams.endDate)}</b> there was a total of <b>{covidStats[2].value}</b> Cases and <b>{covidStats[3].value}</b> Deaths.
             </p>
             </div>
             :
             <div className="MainBox" style={{ padding: 20 }}>
               {dataNotFound ? <p>Covid data not found, please check form information</p> : null}
+              {dataEmpty ? <p>Please fill in all of the boxes</p> : null}
               <Form className="InputBox" onSubmit={GetCovidData}>
                 <Form.Input fluid label='State' placeholder="State" onChange={e => setDataParams({ ...dataParams, state: e.target.value })} />
                 <Form.Input fluid label='County' placeholder="County" onChange={e => setDataParams({ ...dataParams, county: e.target.value })} />
-                <Form.Input fluid label='Start Date' placeholder="YYYY-MM-DD" onChange={e => setDataParams({ ...dataParams, startDate: e.target.value })} />
-                <Form.Input fluid label='End Date' placeholder="YYYY-MM-DD" onChange={e => setDataParams({ ...dataParams, endDate: e.target.value })} />
+                <Form.Input fluid label='Start Date' placeholder="MM/DD/YYYY" onChange={e => setDataParams({ ...dataParams, startDate: ConvertInputDate(e.target.value) })} />
+                <Form.Input fluid label='End Date' placeholder="MM/DD/YYYY" onChange={e => setDataParams({ ...dataParams, endDate: ConvertInputDate(e.target.value) })} />
                 <Button type="submit" className="InputButton">Go</Button>
               </Form>
             </div>

@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
   await new User(userData).save()
     .then((data) => {
       sendWelcomeEmail(data.email, data.first);
-      sendReportEmail(data.email, data.county, data.state, '2020-10-24', data.frequency);
+      sendReportEmail(data.email, data.county, data.state, '2020-12-07', data.frequency);
       res.json(data);
     })
     .catch((err) => {

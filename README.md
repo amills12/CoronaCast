@@ -1,3 +1,6 @@
+## Disclaimer
+This project was made with a base MERN template provided by the class, Intro to Software Engineering (cen3031) at the University of Florida
+
 ## File structure
 #### `client` - Holds the client application
 - #### `public` - This holds all of our static files
